@@ -1,1 +1,54 @@
-<h1>商品新規登録</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 px-sm-0 offset-sm-1">
+      <h2>商品新規登録</h2>
+    </div>
+    <div class="col-sm-10 px-sm-0 mx-auto md-5">
+      <%= form_with model: @item, local: true do |f| %>
+      <table>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :商品画像 %></th>
+            <th><%= f.attachment_field :image %></th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :商品名 %></th>
+            <th><%= f.text_field :name, placeholder:"商品名" %></th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :商品説明 %></th>
+            <th><%= f.text_area :introduction, size: "50×5", placeholder:"ここに説明文を記述します" %></th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :ジャンル %></th>
+            <th>ジャンル選択</th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :税抜き価格 %></th>
+            <th><%= f.text_field :price, placeholder:"1000" %>円</th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :販売ステータス %></th>
+            <th>販売中or販売停止中</th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-action">
+            <th><%= f.submit "新規登録" %></th>
+          </div>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
