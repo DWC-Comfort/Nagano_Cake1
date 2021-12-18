@@ -3,6 +3,6 @@ class AddColumnsToReceivers < ActiveRecord::Migration[5.2]
     add_column :receivers, :customer_id, :integer
     add_column :receivers, :name, :string
     add_column :receivers, :postal_code, :string
-    add_column :receivers, :
+    add_column :receivers, :address, :string
   end
 end
