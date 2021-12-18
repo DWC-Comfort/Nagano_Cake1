@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     get 'customers' => 'customers#show'
     get 'customers/edit' => 'customers#edit'
     patch 'customers' => 'customers#update'
-    patch 'customers' => 'customers#withdraw'
+    patch 'customers/withdraw' => 'customers#withdraw'
     get 'customers/confirm' => 'customers#confirm'
   end
 
