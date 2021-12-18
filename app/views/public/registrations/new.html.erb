@@ -27,6 +27,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :電話番号（ハイフンなし） %>
+    <%= f.text_field :phone_number, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :パスワード %>
     <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> 文字以上)</em>
