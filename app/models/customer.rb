@@ -3,4 +3,12 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+
+  def active_for_authentication?
+    # is_deletedがnilならtrueを返すようにしています。
+    super && (self.is_deleted == nil)
+  end
+
+
 end
