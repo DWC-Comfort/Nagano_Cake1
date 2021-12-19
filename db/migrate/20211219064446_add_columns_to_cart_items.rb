@@ -1,7 +1,7 @@
 class AddColumnsToCartItems < ActiveRecord::Migration[5.2]
   def change
-    add_column :CartItems, :customer_id, :integer
-    add_column :CartItems, :item_id, :integer
-    add_column :CartItems, :quantity, :integer
+    add_column :cart_items, :customer_id, :integer
+    add_column :cart_items, :item_id, :integer
+    add_column :carttems, :quantity, :integer
   end
 end
