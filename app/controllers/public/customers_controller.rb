@@ -17,7 +17,7 @@ class Public::CustomersController < ApplicationController
     @customer.update(is_deleted: true)
     # ログアウトする
     reset_session
-    redirect_to public_root_path
+    redirect_to root_path
   end
 
 end
