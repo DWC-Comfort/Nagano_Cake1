@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
   end
 
-  namespace :public do
+  scope module: :public do
     root 'homes#top'
     get 'homes/about' => 'homes#about'
     resources :receivers, only: [:index, :create, :edit, :update, :destroy]
@@ -28,9 +28,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show, :new, :create]
     post 'orders/confirm' => 'orders#confirm'
     get 'orders/about' => 'orders#about'
-    get 'customers' => 'customers#show'
-    get 'customers/edit' => 'customers#edit'
-    patch 'customers' => 'customers#update'
+    resource :customers, only: [:show, :edit, :update]
     patch 'customers/withdraw' => 'customers#withdraw'
     get 'customers/confirm' => 'customers#confirm'
   end
