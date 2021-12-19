@@ -97,5 +97,4 @@ ActiveRecord::Schema.define(version: 2021_12_19_091621) do
     t.string "postal_code"
     t.string "address"
   end
-
 end
