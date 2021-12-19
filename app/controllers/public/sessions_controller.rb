@@ -24,9 +24,9 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-  
+
   before_action :reject_customer, only: [:create]
-  
+
   protected
    def reject_customer
      # Customerテーブルからemailカラムがcustomerのemailマッチした最初のデータを取得する。
@@ -42,12 +42,12 @@ class Public::SessionsController < Devise::SessionsController
        flash[:error] = "必須項目を入力してください。"
      end
    end
-   
+
   # 会員がログイン後の遷移先(5ページ)
    def after_sign_in_path_for(resource)
      items_path
    end
-   
+
   # 会員がログアウト後の遷移先（1ページ）
   def after_sign_out_path_for(resource)
     root_path
