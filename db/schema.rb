@@ -100,4 +100,5 @@ ActiveRecord::Schema.define(version: 2021_12_19_153157) do
     t.string "postal_code", null: false
     t.string "address", null: false
   end
+
 end
