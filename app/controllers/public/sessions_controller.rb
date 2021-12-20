@@ -35,8 +35,8 @@ class Public::SessionsController < Devise::SessionsController
       # if (@user.valid_password?(params[:user][:password])で、入力されたパスワードが正しいことを確認しています。
       # (@user.active_for_authentication? == false))で、@customerのactive_for_authentication?メソッドがfalseであるかどうかを確認しています。
        if (@customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false))
-         flash[:error] = "退会済みです。"
-         redirect_to new_customer_session_path
+         # 退会済みの場合新規登録画面に遷移する。
+         redirect_to new_customer_registration_path, notice: "ご入力いただいたアカウントは既に退会済みでしたので、新規登録からお願いいたします。"
        end
      else
        flash[:error] = "必須項目を入力してください。"
