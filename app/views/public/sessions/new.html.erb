@@ -4,25 +4,36 @@
 <%= flash[:error] %>
 <%= form_with model: @customer,url: customer_session_path, local: true do |f| %>
 
-  <div class="field">
-    <p><%= f.label :メールアドレス %><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
-  </div>
-
-  <div class="field">
-    <p><%= f.label :パスワード %><%= f.password_field :password, autocomplete: "current-password" %></p>
-  </div>
-
-  <!--<% if devise_mapping.rememberable? %>-->
-    <!--<div class="field">-->
-      <!--<%= f.check_box :remember_me %>-->
-      <!--<%= f.label :remember_me %>-->
-    <!--</div>-->
-  <!--<% end %>-->
-
-  <div class="actions">
-    <%= f.submit "ログイン", class: "btn btn-primary" %>
-  </div>
+<table>
+  <tbody>
+    <tr>
+      <div class="field">
+        <th><%= f.label :メールアドレス %></th>
+        <th><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@examole.com",:size => "50" %></th>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <th><%= f.label :パスワード %></th>
+        <th><%= f.password_field :password, autocomplete: "current-password",:size => "50" %></th>
+      </div>
+    </tr>
+    <tr>
+      <div class="actions">
+        <th></th>
+        <th><%= f.submit "ログイン", class: "btn btn-primary" %></th>
+      </div>
+    </tr>
+  </tbody>
+</table>
 <% end %>
 
 <h3>会員登録がお済みでない方</h3>
 <%= render "public/shared/links" %>
+
+
+
+
+
+
+
