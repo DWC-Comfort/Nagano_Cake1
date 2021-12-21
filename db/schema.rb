@@ -63,10 +63,10 @@ ActiveRecord::Schema.define(version: 2021_12_19_153157) do
     t.datetime "updated_at", null: false
     t.integer "genre_id", null: false
     t.string "name", null: false
-    t.string "image_id", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
     t.boolean "is_active", null: false
+    t.string "image_id", null: false
   end
 
   create_table "order_lists", force: :cascade do |t|
