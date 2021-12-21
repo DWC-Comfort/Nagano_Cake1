@@ -19,22 +19,22 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-        <th>郵便番号</th>
-        <th colspan="2">住所</th>
-        <th>宛名</th>
-        <th colspan="2"></th>
+          <th>郵便番号</th>
+          <th colspan="2">住所</th>
+          <th>宛名</th>
+          <th colspan="2"></th>
         </tr>
       </thead>
       <tbody>
       <% @receivers.each do |receiver| %>
         <tr>
-        <td><%= receiver.postal_code %></td>
-        <td colspan="2"><%= receiver.address %></td>
-        <td><%= receiver.name %></td>
-        <td colspan="2">
-          <%= link_to "編集する", edit_receiver_path(receiver), class: "btn btn-success" %>
-          <%= link_to "削除する", receiver_path(receiver), method: :delete, class: "btn btn-danger" %>
-        </td>
+          <td><%= receiver.postal_code %></td>
+          <td colspan="2"><%= receiver.address %></td>
+          <td><%= receiver.name %></td>
+          <td colspan="2">
+            <%= link_to "編集する", edit_receiver_path(receiver), class: "btn btn-success" %>
+            <%= link_to "削除する", receiver_path(receiver), method: :delete, class: "btn btn-danger" %>
+          </td>
         </tr>
       <% end %>
       </tbody>

@@ -1,0 +1,13 @@
+ja: #日本語の設定
+  enums: #enumの設定
+    order: #モデル名
+      payment_method: #カラム名
+        credit_card: "クレジットカード"
+        transfer: "銀行振込"
+        
+        
+
+# ja: 
+#   time:
+#     formats:
+#       default: "%Y/%m/%d"

@@ -8,6 +8,7 @@ class Public::ReceiversController < ApplicationController
   
   def create
     @receiver = Receiver.new(receiver_params)
+    @receiver.customer_id = current_customer.id
     if @receiver.save
       redirect_to request.referrer || root_path, notice: "You have created receiver successfully."
     else
