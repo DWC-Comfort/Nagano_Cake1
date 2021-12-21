@@ -7,16 +7,16 @@
     </div>
 
     <div class = "col-md-8">
-      <h3><%= @item.name %></h3>
-      <h4><%= @item.introduction %></h4>
-      <h4><%= item.add_tax_price.to_s(:delimited, delimiter: ',') %>円(税込)</h4>
+      <h2><strong><%= @item.name %></strong></h2>
+      <h5><%= @item.introduction %></h5>
+      <h5><%= @item.add_tax_price.to_s(:delimited, delimiter: ',') %>円(税込)</h5>
       <% if @item.is_active == true %>
         <%= form_with model: @cart_item, local: true do |f| %>
           <%= f.select :quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>
-          <%= f.submit "カートに入れる", class: 'btn btn-success' %>
+          <%= f.submit "カートに入れる" %>
         <% end %>
       <% else %>
-        <h4>販売停止中</h4>
+        <h5>販売停止中</h5>
       <% end%>
     </div>
   </div>

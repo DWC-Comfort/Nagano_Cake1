@@ -1,0 +1,27 @@
+<p>ジャンル一覧・追加</p>
+
+<!-- ジャンル新規登録機能ここから -->
+　<%= form_with model: ([:admin, @genre]), local: true do |f| %>
+　　<%= f.label :ジャンル %>
+　　<%= f.text_field :name, autofocus: true, placeholder: "ジャンル名" %>
+　　<%= f.submit "新規登録" %>
+　<% end %>
+<!-- ジャンル新規登録機能ここまで -->
+
+<!-- ジャンル一覧表示ここから -->
+　<table>
+　　<thead>
+　　　<tr>
+　　　　<th>ジャンル</th>
+　　　</tr>
+　　</thead>
+　　<tbody>
+　　　<% @genres.each do |genre| %>
+　　　　<tr>
+　　　　　<th><%= genre.name %></th>
+　　　　　<th><%= link_to "編集する", edit_admin_genre_path(genre.id) %></th>
+　　　　</tr>
+　　　<% end %>
+　　</tbody>
+　</table>
+<!-- ジャンル一覧表示ここまで -->
