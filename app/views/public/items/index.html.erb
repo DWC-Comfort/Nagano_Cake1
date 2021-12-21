@@ -1,2 +1,18 @@
-<p>会員の商品一覧ページ</p>
-<p>会員ログイン後の遷移先</p>
+<div class="container">
+  <h2>商品一覧(全<%= @items.count %>件)</h2>
+
+  <div class="d-flex flex-wrap">
+    <% @items.each do |item| %>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="col-xs-3" style="padding-right: 0px; padding-left: 0px;">
+            <%= attachment_image_tag @item, :image, :fill, 200, 200, fallback:"no_image.jpeg", size: "220x220"  %><br>
+            <%= item.name %><br>
+            ¥<%= item.add_tax_price.to_s(:delimited, delimiter: ',') %>(税込)
+          </div>
+        </div>
+      </div>
+      <%= paginate @items %>
+    <% end %>
+  </div>
+</div>

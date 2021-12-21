@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-8 px-sm-0 offset-sm-1">
-      <h2>商品新規登録</h2>
+      <h2>商品編集</h2>
     </div>
     <div class="col-sm-10 px-sm-0 mx-auto md-5">
-      <%= form_with model: ([:admin,@item]), local: true do |f| %>
+      <%= form_with model: @item, local: true do |f| %>
       <table>
         <tr>
           <div class="form-group">
@@ -44,7 +44,7 @@
         </tr>
         <tr>
           <div class="form-action">
-            <th><%= f.submit "変更を保存" %></th>
+            <th><%= f.submit "新規登録" %></th>
           </div>
         </tr>
       </table>

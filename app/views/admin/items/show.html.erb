@@ -1,7 +1,7 @@
 <div class = "container">
-  <p class="text-success"><%= flash[:notice]%></p>
+  <p><%= flash[:notice]%></p>
   <div class = "row mt-5">
-    <h3>商品詳細</h3>
+    <h2>商品詳細</h2>
   </div>
 
   <div class = "row mt-5">
@@ -31,13 +31,19 @@
             税込価格</br>(税抜価格)
           </th>
           <td>
-            <%= @item.add_tax_price %>(<%= @item.price %>)円
+            <%= item.add_tax_price.to_s(:delimited, delimiter: ',') %>(<%= @item.price %>)円
           </td>
         </tr>
 
         <tr>
           <th>販売ステータス</th>
-          <td>販売中or販売停止中</td>
+          <td>
+            <% if @item.is_active == false %>
+            <span>販売停止中</span>
+            <% else %>
+            <span>販売中</span>
+            <% end %>
+          </td>
         </tr>
       </table>
       <%= link_to "編集する",edit_admin_item_path(@item.id) %>
