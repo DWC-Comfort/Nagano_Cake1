@@ -6,7 +6,7 @@
         <tbody>
           <tr>
             <th>注文日</th>
-            <th><%= l @order.created_at %></th>
+            <th><%= @order.created_at.strftime("%Y/%m/%d") %></th>
           </tr>
           <tr>
             <th>配送先</th>
@@ -22,7 +22,7 @@
           </tr>
           <tr>
             <th>ステータス</th>
-            <th></th>
+            <th><%= @order.order_status_i18n %></th>
           </tr>
         </tbody>
     </table>
@@ -31,16 +31,16 @@
     <table class="table table-bordered">
         <tbody>
           <tr>
-            <th>送料</th>
-            <th></th>
-          </tr>
-          <tr>
             <th>商品合計</th>
-            <th></th>
+            <th><%= @order.total_item_price.to_s(:delimited) %></th>
           </tr>
           <tr>
-            <th>請求金額</th>
-            <th></th>
+            <th>送料</th>
+            <th><%= @order.delivery_fee %></th>
+          </tr>
+          <tr>
+            <th>ご請求金額</th>
+            <th><%= (@order.total_item_price + @order.delivery_fee).to_s(:delimited) %></th>
           </tr>
         </tbody>
     </table>
