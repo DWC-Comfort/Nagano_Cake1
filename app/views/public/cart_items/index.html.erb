@@ -17,6 +17,7 @@
       <tr>
         <td><%= cart_item.item.name %></td>
         <td><%= cart_item.item.add_tax_price.to_s(:delimited, delimiter: ',') %> 円</td>
+
         <!-- 数量の変更 ここから -->
         <td>
           <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch, local:true do |f| %>
@@ -27,6 +28,7 @@
           <% end %>
         </td>
         <!-- 数量の変更 ここまで -->
+
         <td><%= cart_item.subtotal %> 円</td>
         <td><%= link_to '削除する', cart_item_path(cart_item.id), method: :delete %></td>
       </tr>
