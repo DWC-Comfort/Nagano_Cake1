@@ -15,7 +15,7 @@
         <th>配送先</th>
         <th>
           <%= @order.receiver_postal_code %>
-          <%= @order.receiver.address %><br>
+          <%= @order.receiver_address %><br>
           <%= @order.receiver_name %>
         </th>
       </tr>
@@ -52,7 +52,7 @@
           <td><%= order.total_item_price %></td>
           <td><%= order.order_list.quantity %></td>
           <td><%= order.order_list.total_price %></td>
-          <%= form_with model: ([:admin, order.order_list]), url: admin_order_list_path. local: true do |f| %>
+          <%= form_with model: ([:admin, order.order_list]), url: admin_order_list_path, local: true do |f| %>
             <td>
               <%= f.select :making_status, OrderList.making_status_i18n.invert, {pronpt: 0} %>
               <%= f.submit "更新" %>
