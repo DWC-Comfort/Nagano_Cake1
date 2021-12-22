@@ -7,6 +7,12 @@ class Order < ApplicationRecord
   #注文ステータス
   enum order_status: { waiting: 0, paid_up: 1, making: 2, preparing: 3, shipped: 4 }
   
- 
+def add_tax_price
+　(price * 1.1).floor
+end
+  
+def subtotal
+    item.add_tax_price * quantity
+end
   
 end 

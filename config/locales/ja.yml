@@ -5,21 +5,17 @@ ja: #日本語の設定
       payment_method: #カラム名
         credit_card: "クレジットカード"
         transfer: "銀行振込"
-        
-#注文ステータス      
-ja:
-  enums:
-   order:
-    order_status:
-      waiting: "入金待ち"
-      paid_up: "入金確認"
-      making: "製作中"
-      preparing: "発送準備中"
-      shipped: "発送済み"
-#制作ステータス
-      making_status:
-        not_startable: "着手不可"
-        wating_for_make: "製作待ち"
-        making: "製作中"
-        completed: "製作完了"
   
+#注文ステータス      
+# ja:
+#   enums:
+#     order_status:
+#       waiting: "入金待ち"
+#       paid_up: "入金確認"
+#       making: "製作中"
+#       preparing: "発送準備中"
+#       shipped: "発送済み"
+
+
+
+
