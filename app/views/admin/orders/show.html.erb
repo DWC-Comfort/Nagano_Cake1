@@ -1,5 +1,5 @@
 <div class="container">
-  <h4>注文履歴詳細</h4>
+<h4>注文履歴詳細</h4>
   
   <table class="table table-borderless">
     <tbody>
@@ -34,4 +34,26 @@
       </tr>
     </tbody>
   </table>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>単価（税込）</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th>制作ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.each do |order| %>
+      <tr>
+        <td><%= order.order_list.item.name %></td>
+        <td><%= order.order_list.total_price %></td>
+        <td><%= order.order_list.quantity %></td>
+        <td><%= order.order_list.total_price %></td>
+        <td></td>
+      </tr>
+      <% end %>
+  
 </div>
