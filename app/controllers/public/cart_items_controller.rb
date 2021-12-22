@@ -7,12 +7,13 @@ class Public::CartItemsController < ApplicationController
 
   def create
     @cart_item = current_customer.cart_items.new(cart_item_params)
-    if Item.find_by(item: @cart_item.item)
-      @cart_item.update(cart_item_params)
-    else
-      @cart_item.save
-    end
-        redirect_to cart_items_path, notice: "You have added cart_item successfully."
+    # if Item.find_by(item: @cart_item.item)
+    #   @cart_item.update(cart_item_params)
+    # else
+    #   @cart_item.save
+    # end
+    @cart_item.save
+    redirect_to cart_items_path, notice: "You have added cart_item successfully."
   end
 
   def update
