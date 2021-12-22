@@ -9,7 +9,7 @@ class Public::OrdersController < ApplicationController
     #カートの内容を取得
     @cart_items = current_customer.cart_items.all
     #商品の小計
-    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
+    @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
    
      #選択された支払方法を取得
     @order.payment_method = params[:order][:payment_method]
@@ -47,11 +47,14 @@ class Public::OrdersController < ApplicationController
   
   def index
     @orders = Order.all
+    @cart_items = current_customer.cart_items.all
+    @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
   end
   
   def show
     @order = Order.find(params[:id])
-    #ここにもカート内容取得するコード
+    @cart_items = current_customer.cart_items.all
+    @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
   end
   
   private
