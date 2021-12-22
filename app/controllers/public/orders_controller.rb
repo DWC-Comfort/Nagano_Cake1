@@ -6,6 +6,11 @@ class Public::OrdersController < ApplicationController
   
   def confirm
     @order = Order.new(order_params)
+    #カートの内容を取得
+    @cart_items = current_customer.cart_items.all
+    #商品の小計
+    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
+   
      #選択された支払方法を取得
     @order.payment_method = params[:order][:payment_method]
     
@@ -46,13 +51,14 @@ class Public::OrdersController < ApplicationController
   
   def show
     @order = Order.find(params[:id])
+    #ここにもカート内容取得するコード
   end
   
   private
   
   def order_params
-    params.require(:order).permit(:payment_method, :receiver_postal_code, :receiver_address, :receiver_name)
+    params.require(:order).permit(:payment_method, :receiver_postal_code, :receiver_address, :receiver_name, :total_item_price)
   end
-
+  # :delivery_feeは必要？
 
 end

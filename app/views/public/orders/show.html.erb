@@ -47,21 +47,24 @@
     
     <p>注文内容</p>
     <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th colspan="2">商品</th>
-            <th>単価（税込み）</th>
-            <th>個数</th>
-            <th>小計</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td colspan="2"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
+      <thead>
+        <tr>
+          <th colspan="2">商品</th>
+          <th>単価（税込み）</th>
+          <th>個数</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td colspan="2"><%= cart_item.item.name %></td>
+          <!--#taxを定義する？-->
+          <td><%= cart_item.item.price*1.1 %></td>
+          <td><%= cart_item.quantity %></td>
+          <td><%= @total.to_s(:delimited) %></td>
+        </tr>
+      <% end %>
+      </tbody>
   </table>
 </div>

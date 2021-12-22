@@ -22,8 +22,8 @@
             <%= order.receiver_address %><br>
             <%= order.receiver_name %>
           </td>
-          <td></td>
-          <td></td>
+          <td><%= #商品名を取ってくる %><br></td>
+          <td><%= (order.total_item_price + order.delivery_fee).to_s(:delimited) %></td>
           <td><%= order.order_status_i18n %></td>
           <td><%= link_to "表示する", order_psth(order), class: "btn btn-primary" %></td>
         </tr>
