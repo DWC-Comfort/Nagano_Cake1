@@ -1,7 +1,7 @@
 <div class="container">
-  
+
   <p>注文履歴一覧</p>
-  
+
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -23,18 +23,18 @@
             <%= order.receiver_name %>
           </td>
           <td>
-            <% @cart_items.each do |cart_item| %>
-              <%= cart_item.item.name %><br>
+            <% order.order_lists.each do |order_list| %>
+              <%= order_list.item.name %><br>
             <% end %>
           </td>
-          <td><%= (@total + order.delivery_fee).to_s(:delimited) %></td>
+          <td><%= (order.total_item_price + order.delivery_fee).to_s(:delimited) %></td>
           <td><%= order.order_status_i18n %></td>
           <td><%= link_to "表示する", order_path(order.id), class: "btn btn-primary" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  
-  
+
+
 </div>
 

@@ -1,6 +1,6 @@
 <div class="container">
   <h4>注文履歴詳細</h4>
-  
+
   　<p>注文情報</p>
     <table class="table table-bordered">
         <tbody>
@@ -26,13 +26,13 @@
           </tr>
         </tbody>
     </table>
-    
+
     <p>請求情報</p>
     <table class="table table-bordered">
         <tbody>
           <tr>
             <th>商品合計</th>
-            <th><%= @total.to_s(:delimited) %></th>
+            <th><%= @order.total_item_price.to_s(:delimited) %></th>
           </tr>
           <tr>
             <th>送料</th>
@@ -40,11 +40,11 @@
           </tr>
           <tr>
             <th>ご請求金額</th>
-            <th><%= (@total + @order.delivery_fee).to_s(:delimited) %></th>
+            <th><%= (@order.total_item_price + @order.delivery_fee).to_s(:delimited) %></th>
           </tr>
         </tbody>
     </table>
-    
+
     <p>注文内容</p>
     <table class="table table-bordered">
       <thead>
@@ -56,16 +56,15 @@
         </tr>
       </thead>
       <tbody>
-         <!--カート内の個数を持ってきている為、注文後でも数字が変わってしまう。-->
-      <% @cart_items.each do |cart_item| %>
-        <tr>
-          <td colspan="2"><%= cart_item.item.name %></td>
-          <td><%= cart_item.item.add_tax_price %></td>
-          <td><%= cart_item.quantity %></td>
-          <td><%= cart_item.subtotal %></td>
-        </tr>
-      <% end %>
-      <!---->
+        <% @order.order_lists.each do |order_list| %>
+          <tr>
+            <td colspan="2"><%= order_list.item.name %></td>
+            <td><%= order_list.item.add_tax_price %></td>
+            <td><%= order_list.quantity %></td>
+            <td><%= order_list.total_price.to_s(:delimited) %></td>
+          </tr>
+        <% end %>
+
       </tbody>
   </table>
 </div>

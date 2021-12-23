@@ -14,15 +14,21 @@
       <% @orders.each do |order| %>
       <tr>
 　　　　<!--日付と時間を表記-->
-        <td><%= link_to admin_order_path(order) do %>
-              <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S')  %>
-            <% end %>
+        <td>
+          <%= link_to admin_order_path(order.id) do %>
+            <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S')  %>
+          <% end %>
         </td>
         <td><%= order.customer.last_name + order.customer.first_name %></td>
         <td>
-          <% @order_list.each do |order_list| %>
-          <%= order_list.quantity %>
+          <!--each文内にあるためコントローラーを通らないのでビューページに記入することで注文ごとに0に戻す-->
+          <% @total_quantity = 0 %>
+          <% order.order_lists.each do |order_list| %>
+          <!--商品の合計を足している-->
+          <% @total_quantity += order_list.quantity %>
           <% end %>
+          <!--足した値を表示-->
+          <%= @total_quantity %>
         </td>
         <td><%= order.order_status_i18n %></td>
       </tr>
