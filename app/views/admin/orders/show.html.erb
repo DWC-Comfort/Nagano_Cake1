@@ -15,7 +15,7 @@
         <th>配送先</th>
         <th>
           <%= @order.receiver_postal_code %>
-          <%= @order.receiver.address %><br>
+          <%= @order.receiver_address %><br>
           <%= @order.receiver_name %>
         </th>
       </tr>
@@ -26,7 +26,7 @@
       <tr>
         <th>注文ステータス</th>
         <th>
-          <%= form_with model: @order, url: admin_order_path, local: true do |f| %>
+          <%= form_with model: ([:admin, @order]), url: admin_order_path(@order), local: true do |f| %>
             <%= f.select :order_status, Order.order_statuses_i18n.invert, {prompt: 0} %>
             <%= f.submit "更新", class: "btn btn-success" %>
           <% end %>
@@ -46,20 +46,39 @@
       </tr>
     </thead>
     <tbody>
-      <% @order.each do |order| %>
+      <% @order.order_lists.each do |order| %>
         <tr>
-          <td><%= order.order_list.item.name %></td>
-          <td><%= order.total_item_price %></td>
-          <td><%= order.order_list.quantity %></td>
-          <td><%= order.order_list.total_price %></td>
-          <%= form_with model: ([:admin, order.order_list]), url: admin_order_list_path. local: true do |f| %>
-            <td>
-              <%= f.select :making_status, OrderList.making_status_i18n.invert, {pronpt: 0} %>
-              <%= f.submit "更新" %>
-            </td>
-          <% end %>
+          <td><%= order.item.name %></td>
+          <td><%= order.item.add_tax_price %></td>
+          <td><%= order.quantity %></td>
+          <td><%= order.total_price %></td>
+          <!--form_withの全てを<td></td>または<th></th>の中に記載しないとリロードしないと機能しない-->
+          <td>
+            <%= form_with model: ([:admin, order]), url: admin_order_list_path(order), local: true do |f| %>
+              <%= f.select :making_status, OrderList.making_statuses_i18n.invert, {prompt: 0} %>
+              <%= f.submit "更新", class: "btn btn-success" %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>商品合計</th>
+        <td><%= @order.total_item_price.to_s(:delimited) %>円</td>
+      </tr>
+      <tr>
+        <th>送料</th>
+        <td><%= @order.delivery_fee %>円</td>
+      </tr>
+      <tr>
+        <th>請求金額合計</th>
+        <td><%= (@order.total_item_price + @order.delivery_fee).to_s(:delimited) %>円</td>
+      </tr>
+    </tbody>
+  </table>
+
 </div>
