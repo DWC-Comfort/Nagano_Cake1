@@ -36,10 +36,17 @@ class Public::OrdersController < ApplicationController
   end
   
   def create
-    @order = Order.new(order_params)
-    @order.customer_id = current_customer.id
+    @order = current_customer.orders.new(order_params)
     @order.save
-    
+    @cart_items = current_customer.cart_items.all
+    @cart_items.each do |cart_item|
+        @order_lists = @order.order_lists.new
+        @order_lists.item_id = cart_item.item.id
+        @order_lists.total_price = cart_item.subtotal
+        @order_lists.quantity = cart_item.quantity
+        @order_lists.save
+        current_customer.cart_items.destroy_all
+     end 
     redirect_to orders_about_path
   end
   
@@ -47,15 +54,11 @@ class Public::OrdersController < ApplicationController
   end
   
   def index
-    @orders = Order.all
-    @cart_items = current_customer.cart_items.all
-    @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+    @orders = current_customer.orders
   end
   
   def show
-    @order = Order.find(params[:id])
-    @cart_items = current_customer.cart_items.all
-    @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+    @order = current_customer.orders.find(params[:id])
   end
   
   private
