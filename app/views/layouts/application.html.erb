@@ -11,7 +11,8 @@
 
   <body>
       <!--#管理者がログイン状態-->
-    <nav class="navbar navbar-expand navbar-dark bg-light">
+    <nav class="navbar navbar-expand navbar-dark bg-">
+      <a href="/" ><img class="navbar-brand" src="/assets/logo_image.png" alt="logo" /></a>
       <% if admin_signed_in? %>
         <ul class="navbar-nav">
           <li class="navbar-item">
@@ -64,7 +65,17 @@
       <% end %>
     </nav>
 
-
     <%= yield %>
+
+    <div class="space"></div>
+
+    <footer>
+      <p class="footer">
+        © 2021 DMMWEBCAMP TeamComfort
+      </p>
+    </footer>
+
+    <div class="space"></div>
+
   </body>
 </html>

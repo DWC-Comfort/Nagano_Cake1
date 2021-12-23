@@ -15,11 +15,27 @@
  */
 @import "bootstrap";
 
-
 nav li {
  padding: 0 20px;
 }
 
 .notice {
   color: #FF0000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #6c6b6b;
+}
+
+.space {
+  width: 100%;
+  height: 30px;
+}
+
+.footer {
+  color: #333333;
+  text-align: center;
 }
