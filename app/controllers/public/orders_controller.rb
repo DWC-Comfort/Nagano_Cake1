@@ -39,6 +39,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
+    
     redirect_to orders_about_path
   end
   
@@ -62,6 +63,5 @@ class Public::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:payment_method, :receiver_postal_code, :receiver_address, :receiver_name, :total_item_price)
   end
-  # :delivery_feeは必要？
 
 end
