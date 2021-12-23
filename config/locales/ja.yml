@@ -7,14 +7,12 @@ ja: #日本語の設定
         transfer: "銀行振込"
   
 #注文ステータス      
-# ja:
-#   enums:
-#     order_status:
-#       waiting: "入金待ち"
-#       paid_up: "入金確認"
-#       making: "製作中"
-#       preparing: "発送準備中"
-#       shipped: "発送済み"
+      order_status:
+        waiting: "入金待ち"
+        paid_up: "入金確認"
+        making: "製作中"
+        preparing: "発送準備中"
+        shipped: "発送済み"
 
 
 
