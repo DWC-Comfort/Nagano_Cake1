@@ -1,5 +1,6 @@
 <div class="container">
-  <h2>商品一覧(全<%= @items.count %>件)</h2>
+  <h2><b>商品一覧(全<%= @allitems %>件)</b></h2>
+  <div class="space"></div>
   <div class="d-flex flex-wrap">
     <% @items.each do |item| %>
       <div class="col-md-3">
@@ -14,6 +15,6 @@
         </div>
       </div>
     <% end %>
-    <%= paginate @items %>
+    <div class='textcenter' ><%= paginate @items %></div>
   </div>
 </div>
