@@ -15,14 +15,6 @@
  */
 @import "bootstrap";
 
-nav li {
- padding: 0 20px;
-}
-
-.notice {
-  color: #FF0000;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -30,12 +22,110 @@ nav li {
   color: #6c6b6b;
 }
 
-.space {
-  width: 100%;
-  height: 30px;
+/* ヘッダー ここから*/
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
 }
 
-.footer {
-  color: #333333;
+nav li {
+ padding: 0 20px;
+}
+/*ヘッダー ここまで */
+/*メイン ここから*/
+
+.notice {
+  color: #FF0000;
+}
+
+
+
+h4 {
+  margin-top: 20px;
+}
+
+.page-title {
+  background-color: #FFFFCC;
+  font-weight: bold;
+  margin-left: 200px;
+  padding: 0 30px;
+}
+
+.position-center {
+  width: 100%;
+  text-align: center;
+  margin: 30px auto;
+}
+
+.position-right {
+  text-align: right;
+  margin: 30px 20% 30px 0;
+
+}
+
+.position-side {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 20%;
+}
+
+/*テーブル関連 ここから*/
+.table-center, tr, th, td {
+  margin: 15px auto;
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+}
+
+// .table-right {
+//   display: flex;
+//   justify-content: flex-end;
+//   margin: 15px 15% 15px auto;
+// }
+
+th {
+  background-color: #DDDDDD;
+  text-align: center;
+  height: 40px;
+}
+
+tbody th, tbody td{
+  height: 60px;
+}
+
+.column-wide {
+  width: 250px;
+  padding-left: 30px;
+}
+
+.column-narrow {
+  width: 150px;
   text-align: center;
 }
+
+
+/*テーブル関連 ここまで */
+
+
+.btn {
+  height: 38px;
+}
+/*メイン ここまで */
+/*フッター ここから*/
+
+.for-footer {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 60px;
+  box-sizing: border-box;
+}
+
+footer {
+  color: #333333;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+}
+/*フッター ここまで */

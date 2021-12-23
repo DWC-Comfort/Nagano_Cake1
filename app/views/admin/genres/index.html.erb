@@ -1,25 +1,30 @@
-<p>ジャンル一覧・追加</p>
+<%= flash[:notice] %>
+
+<h4><span class="page-title">ジャンル一覧・追加</span></h4>
 
 <!-- ジャンル新規登録機能ここから -->
+<div class="position-center">
 　<%= form_with model: ([:admin, @genre]), local: true do |f| %>
-　　<%= f.label :ジャンル %>
+　　<%= f.label :ジャンル名 %>
 　　<%= f.text_field :name, autofocus: true, placeholder: "ジャンル名" %>
-　　<%= f.submit "新規登録" %>
+　　<%= f.submit "新規登録", class:"btn btn-success"  %>
 　<% end %>
+</div>
 <!-- ジャンル新規登録機能ここまで -->
 
 <!-- ジャンル一覧表示ここから -->
-　<table>
+　<table class="table-center">
 　　<thead>
 　　　<tr>
 　　　　<th>ジャンル</th>
+　　　　<th></th>
 　　　</tr>
 　　</thead>
 　　<tbody>
 　　　<% @genres.each do |genre| %>
 　　　　<tr>
-　　　　　<th><%= genre.name %></th>
-　　　　　<th><%= link_to "編集する", edit_admin_genre_path(genre.id) %></th>
+　　　　　<td class="column-wide"><%= genre.name %></td>
+　　　　　<td class="column-narrow"><%= link_to "編集する", edit_admin_genre_path(genre.id), class:"btn btn-success"  %></td>
 　　　　</tr>
 　　　<% end %>
 　　</tbody>
