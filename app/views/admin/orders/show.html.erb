@@ -1,0 +1,65 @@
+<div class="container">
+<h4>注文履歴詳細</h4>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>購入者</th>
+        <th><%= @order.customer.last_name + " " + @order.customer.first_name %></th>
+      </tr>
+      <tr>
+        <th>注文日</th>
+        <th><%= @order.created_at.strftime("%Y/%m/%d") %></th>
+      </tr>
+      <tr>
+        <th>配送先</th>
+        <th>
+          <%= @order.receiver_postal_code %>
+          <%= @order.receiver.address %><br>
+          <%= @order.receiver_name %>
+        </th>
+      </tr>
+      <tr>
+        <th>支払方法</th>
+        <th><%= @order.payment_method_i18n %></th>
+      </tr>
+      <tr>
+        <th>注文ステータス</th>
+        <th>
+          <%= form_with model: @order, url: admin_order_path, local: true do |f| %>
+            <%= f.select :order_status, Order.order_statuses_i18n.invert, {prompt: 0} %>
+            <%= f.submit "更新", class: "btn btn-success" %>
+          <% end %>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table">
+    <thead>
+      <tr bgcolor="#C0C0C0">
+        <th>商品名</th>
+        <th>単価（税込）</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th>制作ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.each do |order| %>
+        <tr>
+          <td><%= order.order_list.item.name %></td>
+          <td><%= order.total_item_price %></td>
+          <td><%= order.order_list.quantity %></td>
+          <td><%= order.order_list.total_price %></td>
+          <%= form_with model: ([:admin, order.order_list]), url: admin_order_list_path. local: true do |f| %>
+            <td>
+              <%= f.select :making_status, OrderList.making_status_i18n.invert, {pronpt: 0} %>
+              <%= f.submit "更新" %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

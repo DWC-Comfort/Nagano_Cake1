@@ -6,6 +6,11 @@ class Public::OrdersController < ApplicationController
   
   def confirm
     @order = Order.new(order_params)
+    #カートの内容を取得
+    @cart_items = current_customer.cart_items.all
+    #商品の小計
+    @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+   
      #選択された支払方法を取得
     @order.payment_method = params[:order][:payment_method]
     
@@ -31,9 +36,17 @@ class Public::OrdersController < ApplicationController
   end
   
   def create
-    @order = Order.new(order_params)
-    @order.customer_id = current_customer.id
+    @order = current_customer.orders.new(order_params)
     @order.save
+    @cart_items = current_customer.cart_items.all
+    @cart_items.each do |cart_item|
+        @order_lists = @order.order_lists.new
+        @order_lists.item_id = cart_item.item.id
+        @order_lists.total_price = cart_item.subtotal
+        @order_lists.quantity = cart_item.quantity
+        @order_lists.save
+        current_customer.cart_items.destroy_all
+     end 
     redirect_to orders_about_path
   end
   
@@ -41,18 +54,17 @@ class Public::OrdersController < ApplicationController
   end
   
   def index
-    @orders = Order.all
+    @orders = current_customer.orders
   end
   
   def show
-    @order = Order.find(params[:id])
+    @order = current_customer.orders.find(params[:id])
   end
   
   private
   
   def order_params
-    params.require(:order).permit(:payment_method, :receiver_postal_code, :receiver_address, :receiver_name)
+    params.require(:order).permit(:payment_method, :receiver_postal_code, :receiver_address, :receiver_name, :total_item_price)
   end
-
 
 end
