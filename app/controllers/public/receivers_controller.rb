@@ -10,9 +10,10 @@ class Public::ReceiversController < ApplicationController
     @receiver = Receiver.new(receiver_params)
     @receiver.customer_id = current_customer.id
     if @receiver.save
-      redirect_to request.referrer || root_path, notice: "You have created receiver successfully."
+      redirect_to request.referer, notice: "配送先の登録に成功しました"
     else
       @receivers = Receiver.all
+      flash.now[:alert] = "配送先の登録に失敗しました"
       render 'index'
     end
   end
@@ -24,16 +25,18 @@ class Public::ReceiversController < ApplicationController
   def update
     @receiver = Receiver.find(params[:id])
     if @receiver.update(receiver_params)
-      redirect_to receivers_path, notice: "You have updated receiver successfully."
+      redirect_to receivers_path, notice: "配送先の更新に成功しました"
     else
+      flash.now[:alert] = "配送先の更新に失敗しました"
       render "edit"
     end
   end
 
   def destroy
     @receiver = Receiver.find(params[:id])
-    @receiver.destroy
-    redirect_back(fallback_location: root_path)
+    if @receiver.destroy
+      redirect_to request.referer, notice: "配送先を削除しました"
+    end
   end
 
   private

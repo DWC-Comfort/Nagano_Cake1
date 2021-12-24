@@ -1,59 +1,67 @@
 <%= flash[:notice] %>
 
 <p>ショッピングカート</p>
+<!--#もしカートの中身が存在したら-->
+<% if @cart_items.present? %>
 
-<%= link_to "カートを空にする", '/cart_items/', method: :delete, class:"btn btn-danger" %>
-
-<!-- カート商品の数量編集機能 ここから -->
-<table>
-  <thead>
-    <tr>
-      <td>商品名</td>
-      <td>単価(税込)</td>
-      <td>数量</td>
-      <td>小計</td>
-      <td></td>
-    </tr>
-  </thead>
-  <tbody>
-    <% @cart_items.each do |cart_item| %>
+  <%= link_to "カートを空にする", '/cart_items/', method: :delete, class:"btn btn-danger" %>
+  
+  <!-- カート商品の数量編集機能 ここから -->
+  <table>
+    <thead>
       <tr>
-        <td><%= cart_item.item.name %></td>
-        <td><%= cart_item.item.add_tax_price.to_s(:delimited, delimiter: ',') %> 円</td>
-
-        <!-- 数量の変更 ここから -->
-        <td>
-          <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch, local:true do |f| %>
-            <%= f.hidden_field :item_id, value: cart_item.item.id %>
-            <%= f.hidden_field :customer_id, value: cart_item.customer.id %>
-            <%= f.select :quantity, *[1..10] %>
-            <%= f.submit '変更', class:"btn btn-success" %>
-          <% end %>
-        </td>
-        <!-- 数量の変更 ここまで -->
-
-        <td><%= cart_item.subtotal %> 円</td>
-        <td><%= link_to '削除する', cart_item_path(cart_item.id), method: :delete, class:"btn btn-danger" %></td>
+        <td>商品名</td>
+        <td>単価(税込)</td>
+        <td>数量</td>
+        <td>小計</td>
+        <td></td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<!-- カート商品の数量編集機能 ここまで -->
+    </thead>
+    <tbody>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td><%= cart_item.item.name %></td>
+          <td><%= cart_item.item.add_tax_price.to_s(:delimited, delimiter: ',') %> 円</td>
+  
+          <!-- 数量の変更 ここから -->
+          <td>
+            <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch, local:true do |f| %>
+              <%= f.hidden_field :item_id, value: cart_item.item.id %>
+              <%= f.hidden_field :customer_id, value: cart_item.customer.id %>
+              <%= f.select :quantity, *[1..10] %>
+              <%= f.submit '変更', class:"btn btn-success" %>
+            <% end %>
+          </td>
+          <!-- 数量の変更 ここまで -->
+  
+          <td><%= cart_item.subtotal %> 円</td>
+          <td><%= link_to '削除する', cart_item_path(cart_item.id), method: :delete, class:"btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <!-- カート商品の数量編集機能 ここまで -->
+  
+  <%= link_to "買い物を続ける", items_path, class:"btn btn-primary" %>
+  
+  <!-- カート商品の合計金額表示機能 ここから -->
+  <table>
+    <tr>
+      <th>合計金額</th>
+      <!-- 合計金額算出 ここから -->
+      <% @cart_items.each do |cart_item| %>
+      <% @total_price += cart_item.subtotal %></td>
+      <% end %>
+      <!-- 合計金額算出 ここまで -->
+      <td><%= @total_price %> 円</td>
+    </tr>
+  </table>
+  <!-- カート商品の合計金額表示機能 ここまで -->
+  
+  <%= link_to "情報入力に進む", new_order_path, class:"btn btn-success" %>
 
-<%= link_to "買い物を続ける", items_path, class:"btn btn-primary" %>
-
-<!-- カート商品の合計金額表示機能 ここから -->
-<table>
-  <tr>
-    <th>合計金額</th>
-    <!-- 合計金額算出 ここから -->
-    <% @cart_items.each do |cart_item| %>
-    <% @total_price += cart_item.subtotal %></td>
-    <% end %>
-    <!-- 合計金額算出 ここまで -->
-    <td><%= @total_price %> 円</td>
-  </tr>
-</table>
-<!-- カート商品の合計金額表示機能 ここまで -->
-
-<%= link_to "情報入力に進む", new_order_path, class:"btn btn-success" %>
+　　<!--#もしカート内に商品がない場合、商品一覧へ-->
+<% else %>
+  <p>カート内に商品がありません</p>
+  <%= link_to "買い物を続ける", items_path, class:"btn btn-success" %>
+<% end %>
