@@ -3,9 +3,9 @@ class Public::ReceiversController < ApplicationController
 
   def index
     @receiver = Receiver.new
-    @receivers = Receiver.all
+    @receivers = Receiver.all.page(params[:page]).per(5)
   end
-  
+
   def create
     @receiver = Receiver.new(receiver_params)
     @receiver.customer_id = current_customer.id
@@ -16,11 +16,11 @@ class Public::ReceiversController < ApplicationController
       render 'index'
     end
   end
-  
+
   def edit
     @receiver = Receiver.find(params[:id])
   end
-  
+
   def update
     @receiver = Receiver.find(params[:id])
     if @receiver.update(receiver_params)
@@ -29,15 +29,15 @@ class Public::ReceiversController < ApplicationController
       render "edit"
     end
   end
-  
+
   def destroy
     @receiver = Receiver.find(params[:id])
     @receiver.destroy
     redirect_back(fallback_location: root_path)
   end
-  
+
   private
-  
+
   def receiver_params
     params.require(:receiver).permit(:customer_id, :name, :postal_code, :address)
   end
