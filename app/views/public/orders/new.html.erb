@@ -8,7 +8,7 @@
  <!-- 支払い方法 ここから -->
   <tr>
    <th class="column-wide text-top">支払方法</th>
-   <td><%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+   <td><%= f.radio_button :payment_method, Order.payment_methods.key(0), checked: true %>
     <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %><br>
     <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
     <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %><br><br></td>
@@ -21,7 +21,7 @@
    <th class="column-wide text-top">お届け先</th>
    <td colspan="2">
      <!--#customerモデルに登録された住所-->
-    <%= f.radio_button :select_address, "0" %>
+    <%= f.radio_button :select_address, "0", checked: true %>
     <%= f.label :select_address, "ご自身の住所" %><br>
     <span>　　</span>〒<%= current_customer.postal_code %><br>
     <span>　　</span><%= current_customer.address %><br>
