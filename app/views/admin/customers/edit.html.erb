@@ -3,6 +3,13 @@
 </div>
 <span class="space"></span>
 
+<% if @customer.errors.any? %>
+  <ul>
+    <li><%= @customer.errors.count %>件のエラーが発生しました。</li>
+    <li><%= alert %></li>
+  </ul>
+<% end %>
+
 <%= form_with model:@customer, url: admin_customer_path, local:true do |f| %>
   <table class="table-center table-form">
     <tr>

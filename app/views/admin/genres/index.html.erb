@@ -3,6 +3,8 @@
 </div>
 <span class="space"></span>
 
+<%= alert %>
+
 <!-- ジャンル新規登録機能ここから -->
 <div class="position-center">
 　<%= form_with model: ([:admin, @genre]), local: true do |f| %>
@@ -31,3 +33,5 @@
 　　</tbody>
 　</table>
 <!-- ジャンル一覧表示ここまで -->
+
+<%= paginate @genres %>

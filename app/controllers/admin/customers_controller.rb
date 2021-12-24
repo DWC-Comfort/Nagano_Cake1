@@ -1,7 +1,7 @@
 class Admin::CustomersController < ApplicationController
 
   def index
-    @customers = Customer.page(params[:page])
+    @customers = Customer.page(params[:page]).per(10)
 
   end
 
@@ -17,8 +17,10 @@ class Admin::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       redirect_to admin_customer_path
+      flash[:notice] = "変更内容を保存しました。"
     else
-      render "edit"
+      flash.now[:alert] = "全ての項目が必須入力です。"
+      render :edit
     end
   end
 
