@@ -23,11 +23,11 @@
   <tbody>
     <% @cart_items.each do |cart_item| %>
       <tr>
-        <td class="column-wide"><%= cart_item.item.name %></td>
-        <td class="column-narrow"><%= cart_item.item.add_tax_price.to_s(:delimited, delimiter: ',') %> 円</td>
+        <td class="column-wide "><%= cart_item.item.name %></td>
+        <td class="column-narrow text-right"><%= cart_item.item.add_tax_price.to_s(:delimited, delimiter: ',') %> 円　</td>
 
         <!-- 数量の変更 ここから -->
-        <td class="column-narrow">
+        <td class="column-narrow text-center">
           <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch, local:true do |f| %>
             <%= f.hidden_field :item_id, value: cart_item.item.id %>
             <%= f.hidden_field :customer_id, value: cart_item.customer.id %>
@@ -37,8 +37,8 @@
         </td>
         <!-- 数量の変更 ここまで -->
 
-        <td class="column-narrow"><%= cart_item.subtotal %> 円</td>
-        <td class="column-narrow"><%= link_to '削除する', cart_item_path(cart_item.id), method: :delete, class:"btn btn-danger" %></td>
+        <td class="column-narrow text-right"><%= cart_item.subtotal %> 円　</td>
+        <td class="column-narrow text-center"><%= link_to '削除する', cart_item_path(cart_item.id), method: :delete, class:"btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
