@@ -15,6 +15,12 @@
  */
 @import "bootstrap";
 
+// エラーが出た際にレイアウトが崩れないようにしています。
+.field_with_errors {
+  display: contents;
+}
+// ここまで
+
 nav li {
  padding: 0 20px;
 }

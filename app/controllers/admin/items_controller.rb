@@ -13,8 +13,9 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       redirect_to admin_item_path(@item)
-      flash[:notice] = "商品を追加しました"
+      flash[:notice] = "商品を追加しました。"
     else
+      flash.now[:alert] = "全ての項目が必須入力です。"
       render "new"
     end
   end
@@ -30,9 +31,10 @@ class Admin::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      flash[:notice] = '編集しました'
+      flash[:notice] = "変更が保存されました。"
       redirect_to admin_item_path
     else
+    flash.now[:alert] = "全ての項目が必須入力です。"
     render :edit
     end
   end
