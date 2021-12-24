@@ -1,42 +1,40 @@
-<div class="container">
-
-  <p>注文履歴一覧</p>
-
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>注文日</th>
-        <th>配送先</th>
-        <th>注文商品</th>
-        <th>支払金額</th>
-        <th>ステータス</th>
-        <th>注文詳細</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @orders.each do |order| %>
-        <tr>
-          <td><%= order.created_at.strftime("%Y/%m/%d") %></td>
-          <td>
-            〒<%= order.receiver_postal_code %><br>
-            <%= order.receiver_address %><br>
-            <%= order.receiver_name %>
-          </td>
-          <td>
-            <% order.order_lists.each do |order_list| %>
-              <%= order_list.item.name %><br>
-            <% end %>
-          </td>
-          <td><%= (order.total_item_price + order.delivery_fee).to_s(:delimited) %></td>
-          <td><%= order.order_status_i18n %></td>
-          <td><%= link_to "表示する", order_path(order.id), class: "btn btn-primary" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <%= paginate @orders %>
-
-
+<div class="position-center">
+  <h4><span class="page-title">注文履歴一覧</span></h4>
 </div>
+<div class="space"></div>
 
+<table class="table-center">
+  <thead>
+    <tr>
+      <th class="th-color column-narrow">注文日</th>
+      <th class="th-color column-wide">配送先</th>
+      <th class="th-color column-narrow">注文商品</th>
+      <th class="th-color column-narrow">支払金額</th>
+      <th class="th-color column-narrow">ステータス</th>
+      <th class="th-color column-narrow">注文詳細</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td class="text-center"><%= order.created_at.strftime("%Y/%m/%d") %></td>
+        <td>
+          〒<%= order.receiver_postal_code %><br>
+          <%= order.receiver_address %><br>
+          <%= order.receiver_name %>
+        </td>
+        <td>
+          <% order.order_lists.each do |order_list| %>
+            <%= order_list.item.name %><br>
+          <% end %>
+        </td>
+        <td class="text-center"><%= (order.total_item_price + order.delivery_fee).to_s(:delimited) %> 円</td>
+        <td class="text-center"><%= order.order_status_i18n %></td>
+        <td class="text-center"><%= link_to "表示する", order_path(order.id), class: "btn btn-primary" %></td>
+      </tr> 
+
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @orders %>

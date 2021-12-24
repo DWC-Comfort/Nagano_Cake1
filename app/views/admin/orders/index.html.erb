@@ -1,26 +1,29 @@
 <div class="container">
-  <h4>注文履歴一覧</h4>
+  <div class="position-center">
+    <h4><span class="page-title">注文履歴一覧</span></h4>
+  </div>
+<div class="space"></div>
 
-  <table class="table">
+  <table class="table-center">
     <thead>
-      <tr bgcolor="#C0C0C0">
-        <th>購入日時</th>
-        <th>購入者</th>
-        <th>注文個数</th>
-        <th>注文ステータス</th>
+      <tr>
+        <th class="th-color">購入日時</th>
+        <th class="th-color">購入者</th>
+        <th class="th-color">注文個数</th>
+        <th class="th-color">注文ステータス</th>
       </tr>
     </thead>
     <tbody>
       <% @orders.each do |order| %>
       <tr>
 　　　　<!--日付と時間を表記-->
-        <td>
+        <td class="column-wide text-center">
           <%= link_to admin_order_path(order.id) do %>
             <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S')  %>
           <% end %>
         </td>
-        <td><%= order.customer.last_name + order.customer.first_name %></td>
-        <td>
+        <td class="column-wide text-center"><%= order.customer.last_name + order.customer.first_name %></td>
+        <td class="column-wide text-center">
           <!--each文内にあるためコントローラーを通らないのでビューページに記入することで注文ごとに0に戻す-->
           <% @total_quantity = 0 %>
           <% order.order_lists.each do |order_list| %>
@@ -28,9 +31,9 @@
           <% @total_quantity += order_list.quantity %>
           <% end %>
           <!--足した値を表示-->
-          <%= @total_quantity %>
+          <%= @total_quantity %> 個
         </td>
-        <td><%= order.order_status_i18n %></td>
+        <td class="column-wide text-center"><%= order.order_status_i18n %></td>
       </tr>
       <% end %>
     </tbody>

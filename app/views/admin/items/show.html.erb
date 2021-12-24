@@ -1,7 +1,9 @@
 <div class = "container">
   <p><%= flash[:notice]%></p>
   <div class = "row mt-5">
-    <h2><b>商品詳細</b></h2>
+    <div class="position-center">
+      <h4><span class="page-title">商品詳細</span></h4>
+    </div>
   </div>
 
   <div class = "row mt-5">
@@ -10,24 +12,24 @@
     </div>
 
     <div class = "col-md-8">
-      <table class = "table">
+      <table class = "table-form">
         <tr>
-          <th>商品名</th>
+          <th colspan="2">商品名</th>
           <td><%= @item.name %></td>
         </tr>
 
         <tr>
-          <th>商品説明</th>
+          <th colspan="2">商品説明</th>
           <td><%= @item.introduction %></td>
         </tr>
 
         <tr>
-          <th>ジャンル</th>
+          <th colspan="2">ジャンル</th>
           <td><%= @item.genre.name %></td>
         </tr>
 
         <tr>
-          <th>
+          <th colspan="2">
             税込価格</br>(税抜価格)
           </th>
           <td>
@@ -36,17 +38,21 @@
         </tr>
 
         <tr>
-          <th>販売ステータス</th>
+          <th colspan="2">販売ステータス</th>
           <td>
             <% if @item.is_active == false %>
             <span>販売停止中</span>
             <% else %>
-            <span>販売中</span>
+            <span class="text-green">販売中</span>
             <% end %>
           </td>
         </tr>
+        <tr>
+          <th colspan="2"></th>
+          <td><%= link_to "編集する",edit_admin_item_path(@item.id), class: "btn btn-success" %></td>
+        </tr>
       </table>
-      <%= link_to "編集する",edit_admin_item_path(@item.id), class: "btn btn-outline-secondary" %>
+
     </div>
   </div>
 </div>
