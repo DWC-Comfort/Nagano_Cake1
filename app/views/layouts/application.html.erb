@@ -33,6 +33,8 @@
                 <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary" %>
               </li>
             </ul>
+            <%= notice %>
+            <%= alert %>
             <!--顧客のログイン状態-->
           <% elsif customer_signed_in? %>
             <ul class="navbar-nav">
@@ -48,7 +50,12 @@
               <li class="navbar-item">
                 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary" %>
               </li>
+              <li class="navbar-item">
+                ようこそ、<%= current_customer.last_name %>さん！
+              </li>
             </ul>
+            <%= notice %>
+            <%= alert %>
           <% else %>
             <ul class="navbar-nav">
               <li class="navbar-item p-8">

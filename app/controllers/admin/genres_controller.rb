@@ -10,7 +10,7 @@ class Admin::GenresController < ApplicationController
     if @genre.save
       redirect_to admin_genres_path, notice: "ジャンルを追加しました。"
     else
-      @genres = Genre.all
+      @genres = Genre.all.page(params[:page]).per(8)
       flash.now[:alert] = "ジャンル名を入力してください。"
       render :index
     end

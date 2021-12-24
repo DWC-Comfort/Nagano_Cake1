@@ -8,18 +8,6 @@
       <div class="position-center">
         <h4><span class="page-title">商品新規登録</span></h4>
       </div>
-
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-8 px-sm-0 offset-sm-1">
-      <% if @item.errors.any? %>
-        <ul>
-          <li><%= @item.errors.count %>件のエラーが発生しました。</li>
-          <li><%= alert %></li>
-        </ul>
-      <% end %>
     </div>
   </div>
 
@@ -68,8 +56,6 @@
           <div class="form-action ">
             <th></th>
             <td><%= f.submit "新規登録", class: "btn btn-success" %></th>
-
-
           </div>
         </tr>
       </table>

@@ -65,7 +65,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   protected
   # 会員新規登録後の遷移先
   def after_sign_up_path_for(resource)
-     items_path
+     customers_path
   end
 
   def configure_sign_up_params
