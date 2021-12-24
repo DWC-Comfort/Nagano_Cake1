@@ -1,6 +1,9 @@
 <div class = "container o-8column">
   <div class = "row">
-    <h4><span class="page-title">商品一覧</span></h4>
+    <div class="position-center">
+      <h4><span class="page-title">商品一覧</span></h4>
+    </div>
+
     <div class="ml-auto">
       <%= link_to "新規商品作成", new_admin_item_path, class: "btn btn-outline-secondary" %>
     </div>
@@ -31,7 +34,7 @@
               <% if item.is_active == false %>
               <span>販売停止中</span>
               <% else %>
-              <span>販売中</span>
+              <span class="text-green">販売中</span>
               <% end %>
             </td>
           </tr>

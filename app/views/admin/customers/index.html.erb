@@ -1,4 +1,7 @@
-<h4><span class="page-title">会員一覧</span></h4>
+<div class="position-center">
+  <h4><span class="page-title">会員一覧</span></h4>
+</div>
+<span class="space"></span>
 
 <table class='table-center'>
   <thead>
@@ -12,7 +15,7 @@
   <tbody>
     <% @customers.each do |c| %>
       <tr>
-        <td class="column-narrow"><%= c.id %></td>
+        <td class="column-narrow text-center"><%= c.id %></td>
         <td class="column-wide text-center"><%= link_to admin_customer_path(c.id) do %>
               <%= c.last_name + c.first_name %>
             <%end%>

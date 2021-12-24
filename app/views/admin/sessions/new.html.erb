@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-5 mx-auto">
-      <h4><span class="page-title">管理者ログイン</span></h4>
+      <div class="position-center">
+        <h4><span class="page-title">管理者ログイン</span></h4>
+        </div>
+      <div class="space"></div>
 
       <table class="table-center table-form">
         <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>

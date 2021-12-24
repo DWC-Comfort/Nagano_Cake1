@@ -1,11 +1,12 @@
 <div class="position-center">
   <h4><span class="page-title"><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</span></h4>
 </div>
+<span class="space"></span>
 
 <%= form_with model:@customer, url: admin_customer_path, local:true do |f| %>
   <table class="table-center table-form">
     <tr>
-      <th class="column-narrow"><%= f.label :"会員ID" %></th>
+      <th class="column-narrow">会員ID</th>
       <td class="column-wide"><%= f.label :"#{@customer.id}" %></td>
       <td class="column-wide"></td>
     </tr>

@@ -6,12 +6,11 @@
     <tbody>
       <tr>
         <th class="column-narrow">購入者</th>
-        <td class="column-narrow"><%= @order.customer.last_name + " " + @order.customer.first_name %></td>
-        <td class="column-very-wide"></td>
+        <td class="column-narrow" colspan="2"><%= @order.customer.last_name + " " + @order.customer.first_name %></td>
       </tr>
       <tr>
         <th class="column-narrow">注文日</th>
-        <td class="column-narrow"><%= @order.created_at.strftime("%Y/%m/%d") %></td>
+        <td class="column-narrow" colspan="2"><%= @order.created_at.strftime("%Y/%m/%d") %></td>
       </tr>
       <tr>
         <th class="column-narrow">配送先</th>
@@ -23,7 +22,7 @@
       </tr>
       <tr>
         <th class="column-narrow">支払方法</th>
-        <td class="column-narrow"><%= @order.payment_method_i18n %></td>
+        <td class="column-narrow" colspan="2"><%= @order.payment_method_i18n %></td>
       </tr>
       <tr>
         <th class="column-narrow">注文ステータス</th>
@@ -35,8 +34,7 @@
     </tbody>
   </table>
 
-<div class="position-side">
-  <table >
+  <table class="table-center">
     <thead>
       <tr>
         <th class="th-color column-wide">商品名</th>
@@ -64,21 +62,19 @@
     </tbody>
   </table>
 
-
-  <table class="table-form">
-    <tbody>
-      <tr>
-        <th class="column-wide bold">商品合計</th>
-        <td class="column-narrow text-right"><%= @order.total_item_price.to_s(:delimited) %>円</td>
-      </tr>
-      <tr>
-        <th class="column-wide bold">送料</th>
-        <td class="column-narrow text-right"><%= @order.delivery_fee %>円</td>
-      </tr>
-      <tr>
-        <th class="column-wide bold">請求金額合計</th>
-        <td class="column-narrow text-right bold"><%= (@order.total_item_price + @order.delivery_fee).to_s(:delimited) %>円</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+    <table class="table-right table-form">
+      <tbody>
+        <tr>
+          <th class="column-wide bold">商品合計</th>
+          <td class="column-narrow text-right"><%= @order.total_item_price.to_s(:delimited) %>円</td>
+        </tr>
+        <tr>
+          <th class="column-wide bold">送料</th>
+          <td class="column-narrow text-right"><%= @order.delivery_fee %>円</td>
+        </tr>
+        <tr>
+          <th class="column-wide bold">請求金額合計</th>
+          <td class="column-narrow text-right bold"><%= (@order.total_item_price + @order.delivery_fee).to_s(:delimited) %>円</td>
+        </tr>
+      </tbody>
+    </table>

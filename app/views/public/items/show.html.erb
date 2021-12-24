@@ -1,5 +1,4 @@
 <div class = "container">
-  <p><%= flash[:notice]%></p>
 
   <div class = "row mt-5">
     <div class = "col-md-4">
@@ -7,13 +6,16 @@
     </div>
 
     <div class = "col-md-8">
-      <h2><strong><%= @item.name %></strong></h2>
+      <h2><strong><%= @item.name %></strong></h2><br>
       <h5><%= @item.introduction %></h5>
+      <span class="space"></span>
       <h5><%= @item.add_tax_price.to_s(:delimited, delimiter: ',') %>円(税込)</h5>
+      <span class="space"></span>
         <% if @item.is_active == true %>
           <%= form_with model: @cart_item, local: true do |f| %>
             <%= f.hidden_field :item_id, value: @item.id %>
             <%= f.select :quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>
+            <span class="space"></span>
             <%= f.submit "カートに入れる", class:"btn btn-outline-success btn-sm" %>
           <% end %>
         <% else %>

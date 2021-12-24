@@ -1,6 +1,9 @@
-<h4><span class="page-title"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</span></h4>
+<div class="position-center">
+  <h4><span class="page-title"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</span></h4>
+</div>
+<span class="space"></span>
 
-<table class='table-center'>
+<table class='table-center table-form'>
   <tbody>
     <tr>
       <th>会員ID</th>
@@ -34,9 +37,9 @@
       <th>会員ステータス</th>
       <!--is_deletedがtrueの場合は「退会」そうでなければ「有効」を表示する。-->
       <% if @customer.is_deleted == true %>
-        <td class="column-very-wide"><p class="text-green">大会</p></td>
+        <td class="column-very-wide">退会</td>
       <%else%>
-        <td class="column-very-wide">有効</td>
+        <td class="column-very-wide text-green">有効</td>
       <%end%>
     </tr>
   </tbody>

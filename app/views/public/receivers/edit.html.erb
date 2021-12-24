@@ -1,7 +1,10 @@
-<h4><span class="page-title">配送先編集</span></h4>
+<div class="position-center">
+  <h4><span class="page-title">配送先編集</span></h4>
+</div>
+<div class="space"></div>
 
-<table class="table-center table-form">
-  <%= form_with model: @receiver, local: true do |f| %>
+<%= form_with model: @receiver, local: true do |f| %>
+  <table class="table-center table-form">
     <tr>
       <th class="column-wide"><%= f.label :郵便番号（ハイフンなし） %></th>
       <td class="column-very-wide"><%= f.text_field :postal_code %></td>
@@ -17,4 +20,5 @@
       <td class="column-very-wide"><%= f.text_field :name %></td>
       <td class="column-wide"><%= f.submit "変更内容を保存", class: "btn btn-success" %></td>
     </tr>
-  <% end %>
+  </table>
+<% end %>
