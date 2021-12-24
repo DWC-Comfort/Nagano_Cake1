@@ -1,32 +1,36 @@
 <div class="container">
-  <h4>注文履歴一覧</h4>
+  <h4><span class="page-title">注文履歴一覧</span></h4>
 
-  <table class="table">
+  <table class="table-center">
     <thead>
-      <tr bgcolor="#C0C0C0">
-        <th>購入日時</th>
-        <th>購入者</th>
-        <th>注文個数</th>
-        <th>注文ステータス</th>
+      <tr>
+        <th class="th-color">購入日時</th>
+        <th class="th-color">購入者</th>
+        <th class="th-color">注文個数</th>
+        <th class="th-color">注文ステータス</th>
       </tr>
     </thead>
     <tbody>
       <% @orders.each do |order| %>
       <tr>
-        <td><%= l order.created_at %></td>
-        <td><%= order.customer.last_name + order.customer.first_name %></td>
-        <td><%= order.order_list.quantity %></td>
-        <% if order_status == 0 %>
-          <td>"入金待ち"</td>
-        <% elsif order_status == 1 %>
-          <td>"入金確認"</td>
-        <% elsif order_status == 2 %>
-          <td>"製作中"</td>
-        <% elsif order_status == 3 %>
-          <td>"発送準備中"</td>
-        <% else %>
-          <td>"発送済み"</td>
-        <% end %>
+　　　　<!--日付と時間を表記-->
+        <td class="column-wide text-center">
+          <%= link_to admin_order_path(order.id) do %>
+            <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S')  %>
+          <% end %>
+        </td>
+        <td class="column-wide text-center"><%= order.customer.last_name + order.customer.first_name %></td>
+        <td class="column-wide text-center">
+          <!--each文内にあるためコントローラーを通らないのでビューページに記入することで注文ごとに0に戻す-->
+          <% @total_quantity = 0 %>
+          <% order.order_lists.each do |order_list| %>
+          <!--商品の合計を足している-->
+          <% @total_quantity += order_list.quantity %>
+          <% end %>
+          <!--足した値を表示-->
+          <%= @total_quantity %> 個
+        </td>
+        <td class="column-wide text-center"><%= order.order_status_i18n %></td>
       </tr>
       <% end %>
     </tbody>

@@ -1,7 +1,7 @@
 <div class = "container">
   <p><%= flash[:notice]%></p>
   <div class = "row mt-5">
-    <h2><b>商品詳細</b></h2>
+    <h4><span class="page-title">商品詳細</span></h4>
   </div>
 
   <div class = "row mt-5">
@@ -10,7 +10,7 @@
     </div>
 
     <div class = "col-md-8">
-      <table class = "table">
+      <table class = "table-form">
         <tr>
           <th>商品名</th>
           <td><%= @item.name %></td>
@@ -45,8 +45,12 @@
             <% end %>
           </td>
         </tr>
+        <tr>
+          <th></th>
+          <td><%= link_to "編集する",edit_admin_item_path(@item.id), class: "btn btn-success" %></td>
+        </tr>
       </table>
-      <%= link_to "編集する",edit_admin_item_path(@item.id), class: "btn btn-outline-secondary" %>
+
     </div>
   </div>
 </div>

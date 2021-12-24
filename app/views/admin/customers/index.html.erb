@@ -1,27 +1,27 @@
-<h3>会員一覧</h3>
+<h4><span class="page-title">会員一覧</span></h4>
 
-<table class='table table-hover table-inverse'>
+<table class='table-center'>
   <thead>
     <tr bgcolor="#C0C0C0">
-      <th>会員ID</th>
-      <th>氏名</th>
-      <th>メールアドレス</th>
-      <th>ステータス</th>
+      <th class="th-color">会員ID</th>
+      <th class="th-color">氏名</th>
+      <th class="th-color">メールアドレス</th>
+      <th class="th-color">ステータス</th>
     </tr>
   </thead>
   <tbody>
     <% @customers.each do |c| %>
       <tr>
-        <td><%= c.id %></td>
-        <td><%= link_to admin_customer_path(c.id) do %>
+        <td class="column-narrow"><%= c.id %></td>
+        <td class="column-wide text-center"><%= link_to admin_customer_path(c.id) do %>
               <%= c.last_name + c.first_name %>
             <%end%>
         </td>
-        <td><%= c.email %></td>
+        <td class="column-wide text-center"><%= c.email %></td>
         <% if c.is_deleted == true %>
-          <td>退会</td>
+          <td class="column-wide text-center">退会</td>
         <%else%>
-          <td>有効</td>
+          <td class="column-wide text-center"><p class="text-green">有効</p></td>
         <%end%>
       </tr>
     <% end %>

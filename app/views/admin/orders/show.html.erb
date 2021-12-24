@@ -1,65 +1,84 @@
-<div class="container">
-<h4>注文履歴詳細</h4>
+<div class="position-center">
+  <h4><span class="page-title">注文履歴詳細</span></h4>
+</div>
 
-  <table class="table">
+  <table class="table-center table-form">
     <tbody>
       <tr>
-        <th>購入者</th>
-        <th><%= @order.customer.last_name + " " + @order.customer.first_name %></th>
+        <th class="column-narrow">購入者</th>
+        <td class="column-narrow"><%= @order.customer.last_name + " " + @order.customer.first_name %></td>
+        <td class="column-very-wide"></td>
       </tr>
       <tr>
-        <th>注文日</th>
-        <th><%= @order.created_at.strftime("%Y/%m/%d") %></th>
+        <th class="column-narrow">注文日</th>
+        <td class="column-narrow"><%= @order.created_at.strftime("%Y/%m/%d") %></td>
       </tr>
       <tr>
-        <th>配送先</th>
-        <th>
-          <%= @order.receiver_postal_code %>
-          <%= @order.receiver.address %><br>
+        <th class="column-narrow">配送先</th>
+        <td class="column-narrow" colspan="2">
+          〒<%= @order.receiver_postal_code %>
+          <%= @order.receiver_address %><br>
           <%= @order.receiver_name %>
-        </th>
+        </td>
       </tr>
       <tr>
-        <th>支払方法</th>
-        <th><%= @order.payment_method_i18n %></th>
+        <th class="column-narrow">支払方法</th>
+        <td class="column-narrow"><%= @order.payment_method_i18n %></td>
       </tr>
       <tr>
-        <th>注文ステータス</th>
-        <th>
-          <%= form_with model: @order, url: admin_order_path, local: true do |f| %>
-            <%= f.select :order_status, Order.order_statuses_i18n.invert, {prompt: 0} %>
-            <%= f.submit "更新", class: "btn btn-success" %>
+        <th class="column-narrow">注文ステータス</th>
+          <%= form_with model: ([:admin, @order]), url: admin_order_path(@order), local: true do |f| %>
+            <td class="column-narrow"><%= f.select :order_status, Order.order_statuses_i18n.invert, {prompt: 0} %></td>
+            <td class="column-narrow"><%= f.submit "更新", class: "btn btn-success" %></td>
           <% end %>
-        </th>
       </tr>
     </tbody>
   </table>
 
-  <table class="table">
+<div class="position-side">
+  <table >
     <thead>
-      <tr bgcolor="#C0C0C0">
-        <th>商品名</th>
-        <th>単価（税込）</th>
-        <th>数量</th>
-        <th>小計</th>
-        <th>制作ステータス</th>
+      <tr>
+        <th class="th-color column-wide">商品名</th>
+        <th class="th-color column-wide">単価（税込）</th>
+        <th class="th-color column-narrow">数量</th>
+        <th class="th-color column-narrow">小計</th>
+        <th class="th-color column-wide">制作ステータス</th>
+        <th class="th-color column-narrow"></th>
       </tr>
     </thead>
     <tbody>
-      <% @order.each do |order| %>
+      <% @order.order_lists.each do |order| %>
         <tr>
-          <td><%= order.order_list.item.name %></td>
-          <td><%= order.total_item_price %></td>
-          <td><%= order.order_list.quantity %></td>
-          <td><%= order.order_list.total_price %></td>
-          <%= form_with model: ([:admin, order.order_list]), url: admin_order_list_path. local: true do |f| %>
-            <td>
-              <%= f.select :making_status, OrderList.making_status_i18n.invert, {pronpt: 0} %>
-              <%= f.submit "更新" %>
-            </td>
-          <% end %>
+          <td><%= order.item.name %></td>
+          <td class="text-right"><%= order.item.add_tax_price %> 円</td>
+          <td class="text-right"><%= order.quantity %> 個</td>
+          <td class="text-right"><%= order.total_price %> 円</td>
+          <!--form_withの全てを<td></td>または<th></th>の中に記載しないとリロードしないと機能しない-->
+            <%= form_with model: ([:admin, order]), url: admin_order_list_path(order), local: true do |f| %>
+              <td class="text-center"><%= f.select :making_status, OrderList.making_statuses_i18n.invert, {prompt: 0} %></td>
+              <td class="text-center"><%= f.submit "更新", class: "btn btn-success" %></td>
+            <% end %>
         </tr>
       <% end %>
+    </tbody>
+  </table>
+
+
+  <table class="table-form">
+    <tbody>
+      <tr>
+        <th class="column-wide bold">商品合計</th>
+        <td class="column-narrow text-right"><%= @order.total_item_price.to_s(:delimited) %>円</td>
+      </tr>
+      <tr>
+        <th class="column-wide bold">送料</th>
+        <td class="column-narrow text-right"><%= @order.delivery_fee %>円</td>
+      </tr>
+      <tr>
+        <th class="column-wide bold">請求金額合計</th>
+        <td class="column-narrow text-right bold"><%= (@order.total_item_price + @order.delivery_fee).to_s(:delimited) %>円</td>
+      </tr>
     </tbody>
   </table>
 </div>

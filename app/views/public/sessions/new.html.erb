@@ -1,36 +1,31 @@
-<h2>ログイン</h2>
+<h4><span class="page-title">ログイン</span></h4>
+<div class="space"></div>
 
-<h3>会員の方はこちらからログイン</h3>
-<%= flash[:error] %>
-<%= form_with model: @customer,url: customer_session_path, local: true do |f| %>
+<h5><span class="page-sub-title">会員の方はこちらからログイン</span></h5>
+  <%= flash[:error] %>
+  <%= form_with model: @customer,url: customer_session_path, local: true do |f| %>
+    <table class="table-center table-form">
+      <tbody>
+        <tr>
+            <th class="column-narrow"><%= f.label :メールアドレス %></th>
+            <td class="column-very-wide"><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@examole.com",:size => "40" %></td>
+        </tr>
+        <tr>
+            <th class="column-narrow"><%= f.label :パスワード %></th>
+            <td class="column-very-wide"><%= f.password_field :password, autocomplete: "current-password",:size => "40" %></td>
+        </tr>
+        <tr>
+            <th class="column-narrow"></th>
+            <td class="column-very-wide"><%= f.submit "ログイン", class: "btn btn-primary" %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
 
-<table>
-  <tbody>
-    <tr>
-      <div class="field">
-        <th><%= f.label :メールアドレス %></th>
-        <th><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@examole.com",:size => "50" %></th>
-      </div>
-    </tr>
-    <tr>
-      <div class="field">
-        <th><%= f.label :パスワード %></th>
-        <th><%= f.password_field :password, autocomplete: "current-password",:size => "50" %></th>
-      </div>
-    </tr>
-    <tr>
-      <div class="actions">
-        <th></th>
-        <th><%= f.submit "ログイン", class: "btn btn-primary" %></th>
-      </div>
-    </tr>
-  </tbody>
-</table>
-<% end %>
-
-<h3>会員登録がお済みでない方</h3>
+<h5><span class="page-sub-title">会員登録がお済みでない方</span></h5>
+<div class="position-center">
 <%= render "public/shared/links" %>
-
+</div>
 
 
 

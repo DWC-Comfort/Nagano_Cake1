@@ -5,7 +5,7 @@
     </div>
     <div class="col-sm-10 px-sm-0 mx-auto md-5">
       <%= form_with model: ([:admin,@item]), local: true do |f| %>
-      <table>
+      <table class=" table-center table-form">
         <tr>
           <div class="form-group">
             <th><%= f.label :商品画像 %></th>
@@ -15,7 +15,7 @@
         <tr>
           <div class="form-group">
             <th><%= f.label :商品名 %></th>
-            <th><%= f.text_field :name, placeholder:"商品名" %></th>
+            <th><%= f.text_field :name, placeholder:"商品名", size: 47 %></th>
           </div>
         </tr>
         <tr>
@@ -33,18 +33,18 @@
         <tr>
           <div class="form-group">
             <th><%= f.label :税抜き価格 %></th>
-            <th><%= f.text_field :price, placeholder:"1000" %>円</th>
+            <th><%= f.text_field :price, placeholder:"1000", size: 47 %>円</th>
           </div>
         </tr>
         <tr>
           <div class="form-group">
             <th><%= f.label :販売ステータス %></th>
-            <th><%=f.radio_button :is_active, :true %>販売中<%=f.radio_button :is_active, :false %>販売停止中</th>
+            <th>　<%=f.radio_button :is_active, :true %>販売中　<%=f.radio_button :is_active, :false %>販売停止中</th>
           </div>
         </tr>
         <tr>
           <div class="form-action">
-            <th><%= f.submit "編集を確定", class: "btn btn-outline-secondary" %></th>
+            <th><%= f.submit "変更を保存", class: "btn btn-success" %></th>
           </div>
         </tr>
       </table>

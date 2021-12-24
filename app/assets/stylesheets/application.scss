@@ -40,16 +40,36 @@ nav li {
   color: #FF0000;
 }
 
+.space {
+  margin: 20px;
+}
 
+.vertical-middle {
+  padding-top: 200px;
+}
+
+.bold {
+  font-weight: bold;
+}
 
 h4 {
   margin-top: 20px;
 }
 
+.text-green {
+  color: #00CC00;
+  font-weight: bold;
+}
+
 .page-title {
   background-color: #FFFFCC;
   font-weight: bold;
-  margin-left: 200px;
+  padding: 0 30px;
+}
+
+.page-sub-title {
+  background-color:#FFFFCC;
+  margin-left: 250px;
   padding: 0 30px;
 }
 
@@ -62,7 +82,10 @@ h4 {
 .position-right {
   text-align: right;
   margin: 30px 20% 30px 0;
+}
 
+.position-left {
+  margin: 0 50px;
 }
 
 .position-side {
@@ -73,18 +96,12 @@ h4 {
 
 /*テーブル関連 ここから*/
 .table-center, tr, th, td {
-  margin: 15px auto;
+  margin: 30px auto;
   border-top: solid 1px;
   border-bottom: solid 1px;
 }
 
-// .table-right {
-//   display: flex;
-//   justify-content: flex-end;
-//   margin: 15px 15% 15px auto;
-// }
-
-th {
+.th-color {
   background-color: #DDDDDD;
   text-align: center;
   height: 40px;
@@ -94,17 +111,41 @@ tbody th, tbody td{
   height: 60px;
 }
 
+
+.column-narrow {
+  width: 150px;
+}
+
 .column-wide {
   width: 250px;
   padding-left: 30px;
 }
 
-.column-narrow {
-  width: 150px;
+.column-very-wide {
+  width: 350px;
+  padding-left: 30px;
+}
+
+.text-top {
+  vertical-align: top;
+}
+
+.text-center {
   text-align: center;
 }
 
+.text-right {
+  text-align: right;
+}
 
+/*テーブル(フォーム)ここから */
+.table-form, .table-form tr, .table-form th, .table-form td {
+  border: none;
+}
+
+
+
+/*テーブル(フォーム)ここまで */
 /*テーブル関連 ここまで */
 
 

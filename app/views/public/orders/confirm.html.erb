@@ -1,6 +1,6 @@
 <div class="container">
   <h4>注文情報確認</h4>
-  
+
   <!--#カートの中身を表示-->
   <table class="table table-bordered">
     <thead>
@@ -23,7 +23,7 @@
     <% end %>
     </tbody>
   </table>
-  
+
   <!--#請求情報を表示-->
   <table class="table table-bordered">
     <tbody>
@@ -45,20 +45,20 @@
 
   <p>支払方法</p>
   <%= @order.payment_method_i18n %>
-  
+
   <p>お届け先</p>
   〒<%= @order.receiver_postal_code %>
   <%= @order.receiver_address %><br>
   <%= @order.receiver_name %>
-  
+
   <%= form_with model:@order, url: orders_path, local: true do |f| %>
     <%= f.hidden_field :receiver_postal_code %>
     <%= f.hidden_field :receiver_address %>
     <%= f.hidden_field :receiver_name %>
     <%= f.hidden_field :payment_method %>
+    <!--商品の合計金額をtotal_item_priceカラムに入れている。-->
     <%= f.hidden_field :total_item_price, value: @total %>
-    
+
     <%= f.submit '注文確定を確定する', class: "btn btn-success" %>
   <% end %>
-  
 </div>
