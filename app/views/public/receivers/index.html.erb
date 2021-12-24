@@ -1,21 +1,21 @@
 
 <div class="container">
   <h4>配送先登録/一覧</h4>
-  
+
   <div class="row">
     <%= form_with model: @receiver, local: true do |f| %>
       <%= f.label :郵便番号（ハイフンなし） %>
       <%= f.text_field :postal_code, placeholder: "000000" %><br>
-      
+
       <%= f.label :住所 %>
       <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0" %><br>
-      
+
       <%= f.label :宛名 %>
       <%= f.text_field :name, placeholder: "令和道子" %>
-    
+
       <%= f.submit "新規登録", class: "btn btn-success" %>
     <% end %>
-  
+
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -39,6 +39,6 @@
       <% end %>
       </tbody>
     </table>
-    
+    <%= paginate @receivers %>
   </div>
 </div>
