@@ -11,7 +11,7 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.update(order_params)
-    
+
     # 注文ステータスを選択したデータを取得が左辺
     # orderモデルのorder_statusの値を取得している。
     # 取得したデータが右辺の場合、その処理
