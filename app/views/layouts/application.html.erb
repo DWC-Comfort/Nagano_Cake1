@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/91d36909a5.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -71,6 +72,13 @@
                 <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-secondary" %>
               </li>
             </ul>
+            <!--ログインに失敗した時のエラーメッセージ-->
+            <% unless request.path == new_customer_session_path%>
+              <% if notice %>
+                <p class="nav-p"><%= notice %></p>
+              <% end %>
+            <% end %>
+            <!--ここまで-->
           <% end %>
         </nav>
       </header>
