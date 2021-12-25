@@ -4,7 +4,6 @@
 <div class="space"></div>
 
 <h5><span class="page-sub-title">会員の方はこちらからログイン</span></h5>
-  <%= flash[:error] %>
   <%= form_with model: @customer,url: customer_session_path, local: true do |f| %>
     <table class="table-center table-form">
       <tbody>
