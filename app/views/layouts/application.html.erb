@@ -9,7 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="back-image">
     <div class="for-footer">
       <header>
           <!--#管理者がログイン状態-->
@@ -18,44 +18,43 @@
           <% if admin_signed_in? %>
             <ul class="navbar-nav">
               <li class="navbar-item">
-                <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-secondary"%>
+                <%= link_to "商品一覧", admin_items_path, class: "btn btn-warning"%>
               </li>
               <li class="navbar-item">
-                <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-warning" %>
               </li>
               <li class="navbar-item">
-                <%= link_to "注文履歴一覧", admin_orders_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "注文履歴一覧", admin_orders_path, class: "btn btn-outline-warning" %>
               </li>
               <li class="navbar-item">
-                <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-warning" %>
               </li>
               <li class="navbar-item">
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary" %>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-warning" %>
               </li>
             </ul>
-            <%= notice %>
-            <%= alert %>
+            
             <!--顧客のログイン状態-->
           <% elsif customer_signed_in? %>
             <ul class="navbar-nav">
               <li class="navbar-item">
-                <%= link_to "マイページ", customers_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "マイページ", customers_path, class: "btn btn-outline-warning" %>
               </li>
               <li class="navbar-item">
-                <%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "商品一覧", items_path, class: "btn btn-outline-warning" %>
               </li>
               <li class="navbar-item">
-                <%= link_to "カート", cart_items_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "カート", cart_items_path, class: "btn btn-outline-warning" %>
               </li>
               <li class="navbar-item">
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary" %>
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-warning" %>
               </li>
               <li class="navbar-item">
                 ようこそ、<%= current_customer.last_name %>さん！
               </li>
             </ul>
-            <%= notice %>
-            <%= alert %>
+            <p class="flashnotice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
           <% else %>
             <ul class="navbar-nav">
               <li class="navbar-item p-8">

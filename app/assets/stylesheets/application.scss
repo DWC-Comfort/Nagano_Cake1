@@ -23,6 +23,12 @@
   color: #6c6b6b;
 }
 
+.back-image {
+  background: image-url('backimage4.jpg');
+  background-size: cover;
+  font-family: 'MS Pゴシック';
+}
+
 ::placeholder {
   color: #DDDDDD;
 }
