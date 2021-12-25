@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/91d36909a5.js" crossorigin="anonymous"></script>
   </head>
 
-  <body>
+  <body class="back-image">
     <div class="for-footer">
       <header>
           <!--#管理者がログイン状態-->
@@ -34,8 +34,7 @@
                 <%= link_to "LogOut", destroy_admin_session_path, method: :delete, class: "logo-font" %>
               </li>
             </ul>
-            <%= notice %>
-            <%= alert %>
+            
             <!--顧客のログイン状態-->
           <% elsif customer_signed_in? %>
             <ul class="navbar-nav">
