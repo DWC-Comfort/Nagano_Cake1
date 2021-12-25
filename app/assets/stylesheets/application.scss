@@ -52,18 +52,34 @@ nav li {
 
 .kumabaloon {
   width: 100%;
-  height: 70px;
-  text-align: right;
+  height: 40px;
+  margin: 5px 0 0 0;
 }
 
 .navbar-kuma {
   padding: 0;
 }
 
+.text-red {
+  color: red;
+}
+
+.nav-p {
+  margin: 5px 0 0 0;
+  line-height: 40px;
+}
+
+.logo-font {
+  font-family: "Comic Sans MS";
+  color: #440000;
+  font-size: 27px;
+  font-weight: bold;
+}
+
 .kumaimage {
   width: 100%;
-  height: 70px;
-  text-align: left;
+  height: 40px;
+  margin: 5px 0 0 0;
 }
 
 /*ヘッダー ここまで */

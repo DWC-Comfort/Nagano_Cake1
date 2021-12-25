@@ -3,8 +3,8 @@
 </div>
 <div class="space"></div>
 
-<table class="table-center table-form">
-  <%= form_with model:@customer, url: customers_path, local:true do |f| %>
+<%= form_with model:@customer, url: customers_path, local:true do |f| %>
+  <table class="table-center table-form">
     <tr>
       <th class="column-wide"><%= f.label :名前 %></th>
       <td class="column-wide"><%= f.text_field :last_name %></td>
@@ -38,5 +38,5 @@
       <td class="column-wide"><%= f.submit"編集内容を保存", class: "btn btn-success" %></td>
       <td class="column-wide"><%= link_to "退会する", customers_confirm_path, class: "btn btn-danger" %></td>
     </tr>
-  <%end%>
-</table>
+  </table>
+<%end%>

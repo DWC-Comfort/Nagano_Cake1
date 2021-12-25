@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :introduction, presence: true
   validates :price, presence: true
-  validates :is_active, presence: true
+  validates :is_active, inclusion: [true, false]
 
   def add_tax_price
     (price * 1.1).floor
