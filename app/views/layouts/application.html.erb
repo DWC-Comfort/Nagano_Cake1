@@ -33,8 +33,17 @@
               <li class="navbar-item">
                 <%= link_to "LogOut", destroy_admin_session_path, method: :delete, class: "logo-font" %>
               </li>
+              <li>
+                <% unless request.path == admin_orders_path %>
+                  <% if notice %>
+                    <p class="nav-p"><%= notice %></p>
+                  <% elsif alert %>
+                    <p class="nav-p text-red"><%= alert %></p>
+                  <% end %>
+                <% end %>
+              </li>
             </ul>
-            
+
             <!--顧客のログイン状態-->
           <% elsif customer_signed_in? %>
             <ul class="navbar-nav">
@@ -93,7 +102,7 @@
               </li>
             </ul>
             <!--ログインに失敗した時のエラーメッセージ-->
-            <% unless request.path == new_customer_session_path%>
+            <% unless request.path == new_customer_session_path %>
               <% if notice %>
                 <p class="nav-p"><%= notice %></p>
               <% end %>
