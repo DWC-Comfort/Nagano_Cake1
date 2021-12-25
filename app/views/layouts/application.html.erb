@@ -19,19 +19,19 @@
           <% if admin_signed_in? %>
             <ul class="navbar-nav">
               <li class="navbar-item">
-                <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-secondary"%>
+                <%= link_to "Sweets", admin_items_path, class: "logo-font" %>
               </li>
               <li class="navbar-item">
-                <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "Customers", admin_customers_path, class: "logo-font" %>
               </li>
               <li class="navbar-item">
-                <%= link_to "注文履歴一覧", admin_orders_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "Historys", admin_orders_path, class: "logo-font" %>
               </li>
               <li class="navbar-item">
-                <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "Genres", admin_genres_path, class: "logo-font" %>
               </li>
               <li class="navbar-item">
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary" %>
+                <%= link_to "LogOut", destroy_admin_session_path, method: :delete, class: "logo-font" %>
               </li>
             </ul>
             <%= notice %>
@@ -40,36 +40,57 @@
           <% elsif customer_signed_in? %>
             <ul class="navbar-nav">
               <li class="navbar-item">
-                <%= link_to "マイページ", customers_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "MyPage", customers_path, class: "logo-font" %>
               </li>
               <li class="navbar-item">
-                <%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "Sweets", items_path, class: "logo-font" %>
               </li>
               <li class="navbar-item">
-                <%= link_to "カート", cart_items_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "Cart", cart_items_path, class: "logo-font" %>
               </li>
               <li class="navbar-item">
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary" %>
+                <%= link_to "LogOut", destroy_customer_session_path, method: :delete, class: "logo-font" %>
               </li>
-              <li class="navbar-item">
-                ようこそ、<%= current_customer.last_name %>さん！
+              <li>
+
+              </li>
+              <li class="navbar-kuma">
+                <img class="kumabaloon" src="/assets/baloon_left.png" />
+              </li>
+                <% unless request.path == items_path %>
+                  <% if notice %>
+                    <p class="nav-p"><%= current_customer.last_name %>さんへ、</p>
+                    <p class="nav-p"><%= notice %></p>
+                  <% elsif alert %>
+                    <p class="nav-p"><%= current_customer.last_name %>さんへ、</p>
+                    <p class="nav-p text-red"><%= alert %></p>
+                  <% else %>
+                    <p class="nav-p"><%= current_customer.last_name %>さんへ、</p>
+                    <p class="nav-p">お買い物をお楽しみください♪</p>
+                  <% end %>
+                <% else %>
+                  <p class="nav-p">ようこそ、<%= current_customer.last_name %>さん！</p>
+                <% end %>
+              <li class="navbar-kuma">
+                <img class="kumabaloon" src="/assets/baloon_right.png" />
+              </li>
+              <li class="navbar-kuma">
+                <img class="kumaimage" src="/assets/kuma_image.png" />
               </li>
             </ul>
-            <%= notice %>
-            <%= alert %>
           <% else %>
             <ul class="navbar-nav">
               <li class="navbar-item p-8">
-                <%= link_to "About", homes_about_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "About", homes_about_path, class: "logo-font" %>
               </li>
               <li class="navbar-item px-8">
-                <%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "Sweets", items_path, class: "logo-font" %>
               </li>
               <li class="navbar-item">
-                <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "SignUp", new_customer_registration_path, class: "logo-font" %>
               </li>
               <li class="navbar-item">
-                <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "LogIn", new_customer_session_path, class: "logo-font" %>
               </li>
             </ul>
             <!--ログインに失敗した時のエラーメッセージ-->
