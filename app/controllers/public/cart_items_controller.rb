@@ -20,13 +20,8 @@ class Public::CartItemsController < ApplicationController
       #10個以上をカートに入れられないように設定　ここまで
     else
       @cart_item = current_customer.cart_items.new(cart_item_params)
-        if  @cart_item.quantity == Integer
-            @cart_item.save
-            redirect_to cart_items_path, notice: "カート内に商品を追加しました"
-        else
-            redirect_back(fallback_location: root_path)
-            flash[:alert] = "数量が未選択です"
-        end
+      @cart_item.save
+      redirect_to cart_items_path, notice: "カート内に商品を追加しました"
     end
   end
 
