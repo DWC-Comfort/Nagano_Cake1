@@ -28,13 +28,13 @@
           <tr>
             <td><%= item.id %></td>
             <td><%= link_to item.name, admin_item_path(item) %></td>
-            <td><%= item.price %>円</td>
-            <td><%= item.genre.name %></td>
-            <td>
+            <td class="text-right"><%= item.price.to_s(:delimited) %>円</td>
+            <td class="text-center"><%= item.genre.name %></td>
+            <td class="text-center">
               <% if item.is_active == false %>
-              <span>販売停止中</span>
+                <span class="text-silver">販売停止中</span>
               <% else %>
-              <span class="text-green">販売中</span>
+                <span class="text-green">販売中</span>
               <% end %>
             </td>
           </tr>

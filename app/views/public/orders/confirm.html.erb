@@ -17,9 +17,9 @@
     <% @cart_items.each do |cart_item| %>
       <tr>
         <td class="column-wide"><%= cart_item.item.name %></td>
-        <td class="column-narrow text-right"><%= cart_item.item.add_tax_price %> 円</td>
-        <td class="column-narrow text-right"><%= cart_item.quantity %> 個</td>
-        <td class="column-narrow text-right"><%= cart_item.subtotal %> 円</td>
+        <td class="column-narrow text-right"><%= cart_item.item.add_tax_price.to_s(:delimited) %> 円　</td>
+        <td class="column-narrow text-right"><%= cart_item.quantity.to_s(:delimited) %> 個　</td>
+        <td class="column-narrow text-right"><%= cart_item.subtotal.to_s(:delimited) %> 円　</td>
       </tr>
     <% end %>
     </tbody>
@@ -31,15 +31,15 @@
     <tbody>
       <tr>
         <th class="column-narrow th-color">送料</th>
-        <th class="column-narrow text-right"><%= @order.delivery_fee %> 円</th>
+        <th class="column-narrow text-right"><%= @order.delivery_fee.to_s(:delimited, delimiter: ',') %> 円　</th>
       </tr>
       <tr>
         <th class="column-narrow th-color">商品合計</th>
-        <th class="column-narrow text-right"><%= @total.to_s(:delimited) %> 円</th>
+        <th class="column-narrow text-right"><%= @total.to_s(:delimited) %> 円　</th>
       </tr>
       <tr>
         <th class="column-narrow th-color">請求金額</th>
-        <th class="column-narrow text-right"><%= (@total + @order.delivery_fee).to_s(:delimited) %> 円</th>
+        <th class="column-narrow text-right"><%= (@total + @order.delivery_fee).to_s(:delimited) %> 円　</th>
       </tr>
     </tbody>
   </table>
@@ -48,12 +48,12 @@
   <table class="table-form">
     <tr>
       <th class="column-narrow bold">支払い方法</th>
-      <td class="column-wide"><%= @order.payment_method_i18n %></td>
+      <td class="column-very-wide"><%= @order.payment_method_i18n %></td>
     </tr>
     <tr>
       <th class="column-narrow bold">お届け先</th>
-      <td class="column-wide">
-        〒<%= @order.receiver_postal_code %>
+      <td class="column-very-wide">
+        〒<%= @order.receiver_postal_code %><br>
           <%= @order.receiver_address %><br>
           <%= @order.receiver_name %><br>
       </td>

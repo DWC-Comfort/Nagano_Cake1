@@ -19,7 +19,7 @@
 　　　　<!--日付と時間を表記-->
         <td class="column-wide text-center">
           <%= link_to admin_order_path(order.id) do %>
-            <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S')  %>
+            <%= order.created_at.strftime('%Y年%m月%d日　%H:%M')  %>
           <% end %>
         </td>
         <td class="column-wide text-center"><%= order.customer.last_name + order.customer.first_name %></td>

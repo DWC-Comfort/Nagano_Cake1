@@ -44,7 +44,7 @@
         <tr>
           <div class="form-group">
             <th><%= f.label :販売ステータス %></th>
-            <th>　<%=f.radio_button :is_active, :true %>販売中　<%=f.radio_button :is_active, :false %>販売停止中</th>
+            <th>　<%=f.radio_button :is_active, :true %><span class="text-green"> 販売中</span>　　<%=f.radio_button :is_active, :false %><span class="text-silver"> 販売中止中</span></th>
           </div>
         </tr>
         <tr>
