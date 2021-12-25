@@ -40,9 +40,32 @@ nav {
   display: contents;
 }
 
+// ヘッダー内imageサイズ指定
+.navbar-brand {
+  width: 100%;
+  height: 90px;
+}
+
 nav li {
  padding: 0 20px;
 }
+
+.kumabaloon {
+  width: 100%;
+  height: 70px;
+  text-align: right;
+}
+
+.navbar-kuma {
+  padding: 0;
+}
+
+.kumaimage {
+  width: 100%;
+  height: 70px;
+  text-align: left;
+}
+
 /*ヘッダー ここまで */
 /*メイン ここから*/
 
@@ -154,11 +177,13 @@ tbody th, tbody td{
   text-align: right;
 }
 
+
 /*テーブル(フォーム)ここから */
+
+
 .table-form, .table-form tr, .table-form th, .table-form td {
   border: none;
 }
-
 
 
 /*テーブル(フォーム)ここまで */
@@ -168,6 +193,8 @@ tbody th, tbody td{
 .btn {
   height: 38px;
 }
+
+
 /*メイン ここまで */
 /*フッター ここから*/
 
