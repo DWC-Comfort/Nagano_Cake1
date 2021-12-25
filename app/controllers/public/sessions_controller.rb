@@ -38,8 +38,8 @@ class Public::SessionsController < Devise::SessionsController
          # 退会済みの場合新規登録画面に遷移する。
          redirect_to new_customer_registration_path, notice: "ご入力いただいたアカウントは既に退会済みでしたので、新規登録からお願いいたします。"
        end
-     else
-       flash[:error] = "必須項目を入力してください。"
+     # else
+     #   flash[:alert] = "必須項目を入力してください。"
      end
    end
 
