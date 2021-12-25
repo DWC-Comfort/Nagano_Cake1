@@ -39,7 +39,7 @@
           </tr>
           <tr>
             <th class="column-narrow th-color">送料</th>
-            <td class="column-narrow text-right"><%= @order.delivery_fee %> 円</td>
+            <td class="column-narrow text-right"><%= @order.delivery_fee.to_s(:delimited) %> 円</td>
           </tr>
           <tr>
             <th class="column-narrow th-color">ご請求金額</th>
@@ -64,7 +64,7 @@
         <% @order.order_lists.each do |order_list| %>
           <tr>
             <td><%= order_list.item.name %></td>
-            <td class="text-right"><%= order_list.item.add_tax_price %> 円</td>
+            <td class="text-right"><%= order_list.item.add_tax_price.to_s(:delimited) %> 円</td>
             <td class="text-right"><%= order_list.quantity %> 個</td>
             <td class="text-right"><%= order_list.total_price.to_s(:delimited) %> 円</td>
           </tr>

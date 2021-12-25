@@ -10,12 +10,12 @@
       </tr>
       <tr>
         <th class="column-narrow">注文日</th>
-        <td class="column-wide"><%= @order.created_at.strftime("%Y/%m/%d") %></td>
+        <td class="column-wide"><%= @order.created_at.strftime("%Y年%m月%d日") %></td>
       </tr>
       <tr>
         <th class="column-narrow">配送先</th>
         <td class="column-wide">
-          〒<%= @order.receiver_postal_code %>
+          〒<%= @order.receiver_postal_code %><br>
           <%= @order.receiver_address %><br>
           <%= @order.receiver_name %>
         </td>
@@ -50,10 +50,10 @@
     <tbody>
       <% @order.order_lists.each do |order| %>
         <tr>
-          <td><%= order.item.name %></td>
-          <td class="text-right"><%= order.item.add_tax_price %> 円</td>
+          <td>　<%= order.item.name %></td>
+          <td class="text-right"><%= order.item.add_tax_price.to_s(:delimited) %> 円</td>
           <td class="text-right"><%= order.quantity %> 個</td>
-          <td class="text-right"><%= order.total_price %> 円</td>
+          <td class="text-right"><%= order.total_price.to_s(:delimited) %> 円</td>
           <!--form_withの全てを<td></td>または<th></th>の中に記載しないとリロードしないと機能しない-->
 
               <td class="text-center">
@@ -75,7 +75,7 @@
         </tr>
         <tr>
           <th class="column-wide bold">送料</th>
-          <td class="column-narrow text-right"><%= @order.delivery_fee %>円</td>
+          <td class="column-narrow text-right"><%= @order.delivery_fee.to_s(:delimited) %>円</td>
         </tr>
         <tr>
           <th class="column-wide bold">請求金額合計</th>

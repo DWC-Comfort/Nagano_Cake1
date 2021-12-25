@@ -6,7 +6,7 @@
 <!--#もしカートの中身が存在したら-->
 <% if @cart_items.present? %>
 <div class="position-right">
-  <%= link_to "カートを空にする", '/cart_items/', method: :delete, class:"btn btn-danger" %>
+  <%= link_to "カートを空にする", '/cart_items/', method: :delete, data: {confirm: "カート内の商品を全て 削除してもよろしいでしょうか。"}, class:"btn btn-danger" %>
 </div>
 
 <!-- カート商品の数量編集機能 ここから -->
@@ -31,14 +31,14 @@
           <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch, local:true do |f| %>
             <%= f.hidden_field :item_id, value: cart_item.item.id %>
             <%= f.hidden_field :customer_id, value: cart_item.customer.id %>
-            <%= f.select :quantity, *[1..10] %>
+            <%= f.select :quantity, *[1..10] %> 個
             <%= f.submit '変更', class:"btn btn-success" %>
           <% end %>
         </td>
         <!-- 数量の変更 ここまで -->
 
-        <td class="column-narrow text-right"><%= cart_item.subtotal %> 円　</td>
-        <td class="column-narrow text-center"><%= link_to '削除する', cart_item_path(cart_item.id), method: :delete, class:"btn btn-danger" %></td>
+        <td class="column-narrow text-right"><%= cart_item.subtotal.to_s(:delimited, delimiter: ',') %> 円　</td>
+        <td class="column-narrow text-center"><%= link_to '削除する', cart_item_path(cart_item.id), method: :delete, data: {confirm: "商品を1件 削除してもよろしいでしょうか。"}, class:"btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -57,7 +57,7 @@
     <% @total_price += cart_item.subtotal %></td>
     <% end %>
     <!-- 合計金額算出 ここまで -->
-    <td class="column-narrow"><%= @total_price %> 円</td>
+    <td class="column-narrow"><%= @total_price.to_s(:delimited, delimiter: ',') %> 円</td>
   </tr>
 </table>
 <!-- カート商品の合計金額表示機能 ここまで -->
