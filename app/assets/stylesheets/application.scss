@@ -21,12 +21,13 @@
   padding: 0;
   box-sizing: border-box;
   color: #6c6b6b;
+  font-family: "UD デジタル 教科書体 NP-B";
 }
 
 .back-image {
   background: image-url('backimage4.jpg');
   background-size: cover;
-  font-family: 'MS Pゴシック';
+  padding-top: 50px; /* ヘッダーの後ろに要素が隠れないようにするため */
 }
 
 ::placeholder {
@@ -34,11 +35,36 @@
 }
 
 /* ヘッダー ここから*/
+// header {
+//   position: fixed;
+//   z-index: 999;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   padding: 20px 40px;
+//   background: white;
+//   box-sizing: border-box;
+// }
+
 nav {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   list-style: none;
+}
+
+.navbar{
+  width: 100%; /* 幅いっぱいを指定 */
+  height: 50px; /* 高さを50pxに指定 */
+  background: image-url('backimage4.jpg');; /* 背景色にグレーを指定 */
+  background-size: cover;
+  padding: 20px 50px; /* ヘッダーに上下左右それぞれ余白を指定 */
+  box-sizing: border-box; /* padding分を含んで幅を100%にするため */
+  position: fixed; /* ウィンドウを基準に画面に固定 */
+  top: 0; /* 上下の固定位置を上から0pxにする */
+  left: 0; /* 左右の固定位置を左から0pxにする */
+  display: flex; /* 中の要素を横並びにする */
+  align-items: center; /* 中の要素を上下中央に並べる */
 }
 
 // エラーが出た際にレイアウトが崩れないようにしています。
@@ -107,6 +133,10 @@ nav li {
   font-weight: bold;
 }
 
+a {
+  color: brown;
+}
+
 h4 {
   margin-top: 20px;
 }
@@ -128,7 +158,7 @@ h4 {
 
 .page-sub-title {
   background-color:#FFFFCC;
-  margin-left: 250px;
+  margin-left: 450px;
   padding: 0 30px;
 }
 

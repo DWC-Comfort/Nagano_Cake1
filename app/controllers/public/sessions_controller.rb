@@ -27,7 +27,7 @@ class Public::SessionsController < Devise::SessionsController
 
   before_action :reject_customer, only: [:create]
 
-  protected
+protected
    def reject_customer
      # Customerテーブルからemailカラムがcustomerのemailマッチした最初のデータを取得する。
      @customer = Customer.find_by(email: params[:customer][:email].downcase)
@@ -45,7 +45,7 @@ class Public::SessionsController < Devise::SessionsController
 
   # 会員がログイン後の遷移先(5ページ)
    def after_sign_in_path_for(resource)
-     items_path
+     root_path
    end
 
   # 会員がログアウト後の遷移先（1ページ）
