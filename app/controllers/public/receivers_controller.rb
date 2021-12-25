@@ -12,7 +12,7 @@ class Public::ReceiversController < ApplicationController
     if @receiver.save
       redirect_to request.referer, notice: "配送先の登録に成功しました"
     else
-      @receivers = Receiver.all
+      @receivers = Receiver.all.page(params[:page]).per(8)
       flash.now[:alert] = "配送先の登録に失敗しました"
       render 'index'
     end

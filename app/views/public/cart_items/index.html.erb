@@ -68,6 +68,8 @@
 </div>
 <!--#もしカート内に商品がない場合、商品一覧へ-->
 <% else %>
-  <p>カート内に商品がありません</p>
-  <%= link_to "買い物を続ける", items_path, class:"btn btn-success" %>
+  <div class="position-center">
+    カート内に商品がありません<br><br>
+    <%= link_to "買い物を続ける", items_path, class:"btn btn-success" %>
+  </div>
 <% end %>
