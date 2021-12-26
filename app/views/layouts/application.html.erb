@@ -67,8 +67,9 @@
               </li>
                 <% if request.path == items_path %>
                   <p class="nav-p">ようこそ、<%= current_customer.last_name %>さん！</p>
-                <%# elsif request.path == customers_path %>
-                  <!--<p class="nav-p">ようこそ、<%#= current_customer.last_name %>さん！</p>-->
+                <% elsif request.path == customers_path %>
+                  <p class="nav-p">ようこそ、<%= current_customer.last_name %>さん！</p>
+                  <p class="nav-p text-red"><%= alert %></p>
                 <% elsif request.path == root_path %>
                   <p class="nav-p">ようこそ、<%= current_customer.last_name %>さん！</p>
                 <% else %>
