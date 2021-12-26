@@ -1,0 +1,42 @@
+<div class="position-center">
+  <h4><span class="page-title">会員情報編集</span></h4>
+</div>
+<div class="space"></div>
+
+<%= form_with model:@customer, url: customers_path, local:true do |f| %>
+  <table class="table-center table-form">
+    <tr>
+      <th class="column-wide"><%= f.label :名前 %></th>
+      <td class="column-wide"><%= f.text_field :last_name %></td>
+      <td class="column-wide"><%= f.text_field :first_name %></td>
+    </tr>
+    <tr>
+      <th class="column-wide"><%= f.label :フリガナ %></th>
+      <td class="column-wide"><%= f.text_field :last_name_kana %></td>
+      <td class="column-wide"><%= f.text_field :first_name_kana %></td>
+    </tr>
+    <tr>
+      <th class="column-wide"><%= f.label :郵便番号 %></th>
+      <td class="column-wide"><%= f.text_field :postal_code %></td>
+      <td class="column-wide"></td>
+    <tr>
+      <th class="column-wide"><%= f.label :住所 %></th>
+      <td class="column-wide" colspan="2"><%= f.text_field :address, size: 55 %></td>
+    </tr>
+    <tr>
+      <th class="column-wide"><%= f.label :電話番号 %></th>
+      <td class="column-wide"><%= f.text_field :phone_number %></td>
+      <td class="column-wide"></td>
+    </tr>
+    <tr>
+      <th class="column-wide"><%= f.label :メールアドレス %></th>
+      <td class="column-wide"><%= f.email_field :email %></td>
+      <td class="column-wide"></td>
+    </tr>
+    <tr>
+      <th class="column-wide"></th>
+      <td class="column-wide"><%= f.submit"編集内容を保存", class: "btn btn-success" %></td>
+      <td class="column-wide"><%= link_to "退会する", customers_confirm_path, data: {confirm: "本当に退会してもよろしいでしょうか。"}, class: "btn btn-danger" %></td>
+    </tr>
+  </table>
+<%end%>

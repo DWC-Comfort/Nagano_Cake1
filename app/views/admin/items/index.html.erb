@@ -1,0 +1,48 @@
+<div class = "container o-8column">
+  <div class = "row mx-auto">
+    
+    <div class="col-md-10">
+      <div class="position-center">
+        <h4><span class="page-title items">商品一覧</span></h4>
+      </div>
+    </div>
+
+     <div class="col-md-2">
+      <p class="new-item"><%= link_to "新規商品作成", new_admin_item_path, class: "btn btn-outline-secondary" %></p>
+     </div>
+  </div>
+
+  <div class="container">
+    <table class="table">
+      <thead class="thead-light">
+        <div class ="row justify-content-center">
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+          </tr>
+        </div>
+      </thead>
+      <tbody>
+      <% @items.each do |item| %>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= link_to item.name, admin_item_path(item) %></td>
+            <td class="text-right"><%= item.price.to_s(:delimited) %>円</td>
+            <td class="text-center"><%= item.genre.name %></td>
+            <td class="text-center">
+              <% if item.is_active == false %>
+                <span class="text-silver">販売停止中</span>
+              <% else %>
+                <span class="text-green">販売中</span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class='textcenter' ><%= paginate @items, theme: 'twitter-bootstrap-4' %></div>
+  </div>
+</div>

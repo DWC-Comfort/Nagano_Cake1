@@ -4,12 +4,132 @@
     <title>NaganoCake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/91d36909a5.js" crossorigin="anonymous"></script>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="back-image">
+    <div class="for-footer">
+      <header>
+          <!--#管理者がログイン状態-->
+        <nav class="navbar navbar-expand navbar-dark bg-">
+          <a href="/" ><img class="navbar-brand" src="/assets/logo_image.png" alt="logo" /></a>
+          <% if admin_signed_in? %>
+            <ul class="navbar-nav">
+              <li class="navbar-item">
+                <%= link_to "Sweets", admin_items_path, class: "logo-font" %>
+              </li>
+              <li class="navbar-item">
+                <%= link_to "Customers", admin_customers_path, class: "logo-font" %>
+              </li>
+              <li class="navbar-item">
+                <%= link_to "Orders", admin_orders_path, class: "logo-font" %>
+              </li>
+              <li class="navbar-item">
+                <%= link_to "Genres", admin_genres_path, class: "logo-font" %>
+              </li>
+              <li class="navbar-item">
+                <%= link_to "LogOut", destroy_admin_session_path, method: :delete, class: "logo-font" %>
+              </li>
+              <li class="navbar-item">
+                <% if request.path == admin_orders_path %>
+                <% elsif request.path == admin_genres_path %>
+                  <p class="nav-p text-red"><%= alert %></p>
+                <% else %>
+                  <p class="nav-p"><%= notice %></p>
+                  <p class="nav-p text-red"><%= alert %></p>
+                <% end %>
+              </li>
+            </ul>
+
+            <!--顧客のログイン状態-->
+          <% elsif customer_signed_in? %>
+            <ul class="navbar-nav">
+              <li class="navbar-item">
+                <%= link_to "MyPage", customers_path, class: "logo-font" %>
+              </li>
+              <li class="navbar-item">
+                <%= link_to "Sweets", items_path, class: "logo-font" %>
+              </li>
+              <li class="navbar-item">
+                <%= link_to "Cart", cart_items_path, class: "logo-font" %>
+              </li>
+              <li class="navbar-item">
+                <%= link_to "LogOut", destroy_customer_session_path, method: :delete, class: "logo-font" %>
+              </li>
+              <li>
+
+              </li>
+              <li class="navbar-kuma">
+                <img class="kumabaloon" src="/assets/baloon_left.png" />
+              </li>
+                <% if request.path == items_path %>
+                  <p class="nav-p">ようこそ、<%= current_customer.last_name %>さん！</p>
+                <% elsif request.path == customers_path %>
+                  <p class="nav-p">ようこそ、<%= current_customer.last_name %>さん！</p>
+                  <p class="nav-p text-red"><%= alert %></p>
+                <% elsif request.path == root_path %>
+                  <p class="nav-p">ようこそ、<%= current_customer.last_name %>さん！</p>
+                <% else %>
+                    <% if notice %>
+                    <p class="nav-p"><%= current_customer.last_name %>さんへ、</p>
+                    <p class="nav-p"><%= notice %></p>
+                  <% elsif alert %>
+                    <p class="nav-p"><%= current_customer.last_name %>さんへ、</p>
+                    <p class="nav-p text-red"><%= alert %></p>
+                  <% else %>
+                    <p class="nav-p"><%= current_customer.last_name %>さんへ、</p>
+                    <p class="nav-p">お買い物をお楽しみください♪</p>
+                  <% end %>
+                <% end %>
+              <li class="navbar-kuma">
+                <img class="kumabaloon" src="/assets/baloon_right.png" />
+              </li>
+              <li class="navbar-kuma">
+                <img class="kumaimage" src="/assets/kuma_image.png" />
+              </li>
+            </ul>
+          <% else %>
+            <ul class="navbar-nav">
+              <li class="navbar-item p-8">
+                <%= link_to "About", homes_about_path, class: "logo-font" %>
+              </li>
+              <li class="navbar-item px-8">
+                <%= link_to "Sweets", items_path, class: "logo-font" %>
+              </li>
+              <li class="navbar-item">
+                <%= link_to "SignUp", new_customer_registration_path, class: "logo-font" %>
+              </li>
+              <li class="navbar-item">
+                <%= link_to "LogIn", new_customer_session_path, class: "logo-font" %>
+              </li>
+            </ul>
+            <!--ログインに失敗した時のエラーメッセージ-->
+            <% if request.path == new_customer_session_path %>
+            <% elsif request.path == new_customer_registration_path %>
+            <% elsif request.path == new_admin_session_path %>
+            <% elsif request.path == root_path %>
+            <% else %>
+              <% if notice %>
+                <p class="nav-p"><%= notice %></p>
+                <p class="nav-p text-red"><%= alert %></p>
+              <% end %>
+            <% end %>
+            <!--ここまで-->
+          <% end %>
+        </nav>
+      </header>
+
+      <main>
+        <%= yield %>
+      </main>
+
+      <footer>
+          <p>© 2021 DMMWEBCAMP TeamComfort</p>
+      </footer>
+    </div>
+
   </body>
 </html>

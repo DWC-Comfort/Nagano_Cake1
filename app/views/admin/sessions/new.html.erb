@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-5 mx-auto">
+      <div class="position-center">
+        <h4><span class="page-title">管理者ログイン</span></h4>
+        </div>
+      <div class="space"></div>
+
+      <table class="table-center table-form">
+        <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
+          <tr>
+            <th class="column-wide"><%= f.label :メールアドレス %></th>
+            <td class="column-very-wide"><%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "sample@example.com" %></td>
+          </tr>
+
+          <tr>
+            <th class="column-wide"><%= f.label :パスワード %></th>
+            <td class="column-very-wide"><%= f.password_field :password, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td class="column-very-wide"><%= f.submit "ログイン", class: "btn btn-primary" %></td>
+          </tr>
+      </table>
+      <% end %>
+
+      <%= render "admin/shared/links" %>
+
+    </div>
+  </div>
+</div>

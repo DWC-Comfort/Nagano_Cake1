@@ -1,0 +1,85 @@
+<div class="position-center">
+  <h4><span class="page-title">注文履歴詳細</span></h4>
+</div>
+
+  <table class="table-center table-form">
+    <tbody>
+      <tr>
+        <th class="column-narrow">購入者</th>
+        <td class="column-wide"><%= @order.customer.last_name + " " + @order.customer.first_name %></td>
+      </tr>
+      <tr>
+        <th class="column-narrow">注文日</th>
+        <td class="column-wide"><%= @order.created_at.strftime("%Y年%m月%d日") %></td>
+      </tr>
+      <tr>
+        <th class="column-narrow">配送先</th>
+        <td class="column-wide">
+          〒<%= @order.receiver_postal_code %><br>
+          <%= @order.receiver_address %><br>
+          <%= @order.receiver_name %>
+        </td>
+      </tr>
+      <tr>
+        <th class="column-narrow">支払方法</th>
+        <td class="column-wide"><%= @order.payment_method_i18n %></td>
+      </tr>
+      <tr>
+        <th class="column-narrow">注文ステータス</th>
+        <td class="column-wide">
+          <%= form_with model: ([:admin, @order]), url: admin_order_path(@order), local: true do |f| %>
+            <%= f.select :order_status, Order.order_statuses_i18n.invert, {prompt: 0} %>
+            <%= f.submit "更新", class: "btn btn-success" %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table-center">
+    <thead>
+      <tr>
+        <th class="th-color column-wide">商品名</th>
+        <th class="th-color column-wide">単価（税込）</th>
+        <th class="th-color column-narrow">数量</th>
+        <th class="th-color column-narrow">小計</th>
+        <th class="th-color column-wide">制作ステータス</th>
+        <th class="th-color column-narrow"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.order_lists.each do |order| %>
+        <tr>
+          <td>　<%= order.item.name %></td>
+          <td class="text-right"><%= order.item.add_tax_price.to_s(:delimited) %> 円</td>
+          <td class="text-right"><%= order.quantity %> 個</td>
+          <td class="text-right"><%= order.total_price.to_s(:delimited) %> 円</td>
+          <!--form_withの全てを<td></td>または<th></th>の中に記載しないとリロードしないと機能しない-->
+
+              <td class="text-center">
+                <%= form_with model: ([:admin, order]), url: admin_order_list_path(order), local: true do |f| %>
+                  <%= f.select :making_status, OrderList.making_statuses_i18n.invert, {prompt: 0} %>
+                  <%= f.submit "更新", class: "btn btn-success" %>
+                <% end %>
+              </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+    <table class="table-right table-form">
+      <tbody>
+        <tr>
+          <th class="column-wide bold">商品合計</th>
+          <td class="column-narrow text-right"><%= @order.total_item_price.to_s(:delimited) %>円</td>
+        </tr>
+        <tr>
+          <th class="column-wide bold">送料</th>
+          <td class="column-narrow text-right"><%= @order.delivery_fee.to_s(:delimited) %>円</td>
+        </tr>
+        <tr>
+          <th class="column-wide bold">請求金額合計</th>
+          <td class="column-narrow text-right bold"><%= (@order.total_item_price + @order.delivery_fee).to_s(:delimited) %>円</td>
+        </tr>
+      </tbody>
+    </table>

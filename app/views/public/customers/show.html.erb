@@ -1,0 +1,45 @@
+<div class="position-center">
+  <h4><span class="page-title">マイページ</span></h4>
+</div>
+<div class="space"></div>
+
+<div class="position-center">
+  <p>登録情報<span class="space"><%= link_to "編集する", edit_customers_path, class: "btn btn-success" %></p>
+</div>
+
+<table class="table-center">
+  <tr>
+    <th class="column-wide th-color">氏名</th>
+    <td class="column-very-wide"><%= @customer.last_name %><%= @customer.first_name %></td>
+  </tr>
+
+  <tr>
+    <th class="column-wide th-color">カナ</th>
+    <td class="column-very-wide"><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
+  </tr>
+
+  <tr>
+    <th class="column-wide th-color">郵便番号</th>
+    <td class="column-very-wide"><%= @customer.postal_code %></td>
+  </tr>
+
+  <tr>
+    <th class="column-wide th-color">住所</th>
+    <td class="column-very-wide"><%= @customer.address %></td>
+  </tr>
+
+  <tr>
+    <th class="column-wide th-color">電話番号</th>
+    <td class="column-very-wide"><%= @customer.phone_number %></td>
+  </tr>
+
+  <tr>
+    <th class="column-wide th-color">メールアドレス</th>
+    <td class="column-very-wide"><%= @customer.email %></td>
+  </tr>
+</table>
+
+<div class="position-center">
+  <p>配送先　<span class="space"></span><%= link_to "一覧を見る", receivers_path, class: "btn btn-primary" %></p>
+  <p>注文履歴<span class="space"></span><%= link_to"一覧を見る", orders_path, class: "btn btn-primary" %></p>
+</div>

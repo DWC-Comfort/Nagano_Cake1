@@ -1,0 +1,78 @@
+  <div class="position-center">
+    <h4><span class="page-title">注文情報確認</span></h4>
+  </div>
+  <span class="space"></span>
+
+  <!--#カートの中身を表示-->
+  <table class="table-center">
+    <thead>
+      <tr>
+        <th class="th-color">商品名</th>
+        <th class="th-color">単価（税込み）</th>
+        <th class="th-color">数量</th>
+        <th class="th-color">小計</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @cart_items.each do |cart_item| %>
+      <tr>
+        <td class="column-wide"><%= cart_item.item.name %></td>
+        <td class="column-narrow text-right"><%= cart_item.item.add_tax_price.to_s(:delimited) %> 円　</td>
+        <td class="column-narrow text-right"><%= cart_item.quantity.to_s(:delimited) %> 個　</td>
+        <td class="column-narrow text-right"><%= cart_item.subtotal.to_s(:delimited) %> 円　</td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <div class="position-side">
+  <!--#請求情報を表示-->
+  <table>
+    <tbody>
+      <tr>
+        <th class="column-narrow th-color">送料</th>
+        <th class="column-narrow text-right"><%= @order.delivery_fee.to_s(:delimited, delimiter: ',') %> 円　</th>
+      </tr>
+      <tr>
+        <th class="column-narrow th-color">商品合計</th>
+        <th class="column-narrow text-right"><%= @total.to_s(:delimited) %> 円　</th>
+      </tr>
+      <tr>
+        <th class="column-narrow th-color">請求金額</th>
+        <th class="column-narrow text-right"><%= (@total + @order.delivery_fee).to_s(:delimited) %> 円　</th>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <table class="table-form">
+    <tr>
+      <th class="column-narrow bold">支払い方法</th>
+      <td class="column-very-wide"><%= @order.payment_method_i18n %></td>
+    </tr>
+    <tr>
+      <th class="column-narrow bold">お届け先</th>
+      <td class="column-very-wide">
+        〒<%= @order.receiver_postal_code %><br>
+          <%= @order.receiver_address %><br>
+          <%= @order.receiver_name %><br>
+      </td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>
+        <%= form_with model:@order, url: orders_path, local: true do |f| %>
+          <%= f.hidden_field :receiver_postal_code %>
+          <%= f.hidden_field :receiver_address %>
+          <%= f.hidden_field :receiver_name %>
+          <%= f.hidden_field :payment_method %>
+          <!--商品の合計金額をtotal_item_priceカラムに入れている。-->
+          <%= f.hidden_field :total_item_price, value: @total %><br>
+
+          <%= f.submit '注文確定を確定する', class: "btn btn-success" %>
+        <% end %>
+      </td>
+    </tr>
+
+  </table>
+  </div>
