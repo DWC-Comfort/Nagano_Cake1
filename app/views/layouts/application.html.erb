@@ -34,8 +34,13 @@
                 <%= link_to "LogOut", destroy_admin_session_path, method: :delete, class: "logo-font" %>
               </li>
               <li class="navbar-item">
-                <p class="nav-p"><%= notice %></p>
-                <p class="nav-p text-red"><%= alert %></p>
+                <% if request.path == admin_orders_path %>
+                <% elsif request.path == admin_genres_path %>
+                  <p class="nav-p text-red"><%= alert %></p>
+                <% else %>
+                  <p class="nav-p"><%= notice %></p>
+                  <p class="nav-p text-red"><%= alert %></p>
+                <% end %>
               </li>
             </ul>
 
@@ -102,11 +107,13 @@
             </ul>
             <!--ログインに失敗した時のエラーメッセージ-->
             <% if request.path == new_customer_session_path %>
+            <% elsif request.path == new_customer_registration_path %>
             <% elsif request.path == new_admin_session_path %>
             <% elsif request.path == root_path %>
             <% else %>
               <% if notice %>
                 <p class="nav-p"><%= notice %></p>
+                <p class="nav-p text-red"><%= alert %></p>
               <% end %>
             <% end %>
             <!--ここまで-->
