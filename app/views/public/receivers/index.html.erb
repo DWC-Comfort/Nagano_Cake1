@@ -43,7 +43,7 @@
           <td class="column-narrow text-center"><%= receiver.name %></td>
           <td class="column-wide">
             <%= link_to "編集する", edit_receiver_path(receiver), class: "btn btn-success" %>
-            <%= link_to "削除する", receiver_path(receiver), method: :delete, data: {confirm: "配送先情報を1件 削除してもよろしいでしょうか。byみっち"}, class: "btn btn-danger" %>
+            <%= link_to "削除する", receiver_path(receiver), method: :delete, data: {confirm: "配送先情報を1件 削除してもよろしいでしょうか。"}, class: "btn btn-danger" %>
           </td>
         </tr>
       <% end %>
