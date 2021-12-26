@@ -26,8 +26,10 @@
 
 .back-image {
   background: image-url('backimage4.jpg');
-  background-size: cover;
   padding-top: 50px; /* ヘッダーの後ろに要素が隠れないようにするため */
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
 }
 
 ::placeholder {
@@ -55,7 +57,7 @@ nav {
 
 .navbar{
   width: 100%; /* 幅いっぱいを指定 */
-  height: 50px; /* 高さを50pxに指定 */
+  height: 60px; /* 高さを50pxに指定 */
   background: image-url('backimage4.jpg');; /* 背景色にグレーを指定 */
   background-size: cover;
   padding: 20px 50px; /* ヘッダーに上下左右それぞれ余白を指定 */
@@ -185,9 +187,10 @@ h4 {
 
 /*テーブル関連 ここから*/
 .table-center, tr, th, td {
-  margin: 30px auto;
+  margin: 0px auto;
   border-top: solid 1px;
   border-bottom: solid 1px;
+  height: 40px;
 }
 
 .table-right {
@@ -199,11 +202,10 @@ h4 {
 .th-color {
   background-color: #DDDDDD;
   text-align: center;
-  height: 40px;
 }
 
 tbody th, tbody td{
-  height: 60px;
+  height: 55px;
 }
 
 
@@ -255,7 +257,7 @@ tbody th, tbody td{
 /*フッター ここから*/
 
 .for-footer {
-  min-height: 100vh;
+  min-height: 85vh;
   position: relative;
   padding-bottom: 60px;
   box-sizing: border-box;
