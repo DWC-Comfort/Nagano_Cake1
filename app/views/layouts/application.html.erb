@@ -60,6 +60,8 @@
                   <p class="nav-p">ようこそ、<%= current_customer.last_name %>さん！</p>
                 <% elsif request.path == customers_path %>
                   <p class="nav-p">ようこそ、<%= current_customer.last_name %>さん！</p>
+                <% elsif request.path == root_path %>
+                  <p class="nav-p">ようこそ、<%= current_customer.last_name %>さん！</p>
                 <% else %>
                     <% if notice %>
                     <p class="nav-p"><%= current_customer.last_name %>さんへ、</p>

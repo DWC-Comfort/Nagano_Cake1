@@ -1,7 +1,7 @@
 <div class="position-center">
+  <div class="space"></div>
   <h4><span class="page-title">会員一覧</span></h4>
 </div>
-<span class="space"></span>
 
 <table class='table-center'>
   <thead>
@@ -16,15 +16,15 @@
     <% @customers.each do |c| %>
       <tr>
         <td class="column-narrow text-center"><%= c.id %></td>
-        <td class="column-wide text-center"><%= link_to admin_customer_path(c.id) do %>
+        <td class="column-narrow text-center"><%= link_to admin_customer_path(c.id) do %>
               <%= c.last_name + c.first_name %>
             <%end%>
         </td>
         <td class="column-wide text-center"><%= c.email %></td>
         <% if c.is_deleted == true %>
-          <td class="column-wide text-center"><span class="text-silver">退会</span></td>
+          <td class="column-narrow text-center"><span class="text-silver">退会</span></td>
         <%else%>
-          <td class="column-wide text-center"><span class="text-green">有効</span></td>
+          <td class="column-narrow text-center"><span class="text-green">有効</span></td>
         <%end%>
       </tr>
     <% end %>
