@@ -1,56 +1,63 @@
-<div class="position-center">
-  <h4><span class="page-title">注文履歴詳細</span></h4>
-</div>
-
-  　<p class="text-center bold">注文情報</p>
-    <table class="table-center">
-        <tbody>
-          <tr>
-            <th class="column-narrow th-color">注文日</th>
-            <td class="column-very-wide"><%= @order.created_at.strftime("%Y/%m/%d") %></td>
-          </tr>
-          <tr>
-            <th class="column-narrow th-color">配送先</th>
-            <td class="column-very-wide">
-               〒<%= @order.receiver_postal_code %><br>
-                <%= @order.receiver_address %><br>
-                <%= @order.receiver_name %>
-            </td>
-          </tr>
-          <tr>
-            <th class="column-narrow th-color">支払方法</th>
-            <td class="column-very-wide"><%= @order.payment_method_i18n %></td>
-          </tr>
-          <tr>
-            <th class="column-narrow th-color">ステータス</th>
-            <td class="column-very-wide"><%= @order.order_status_i18n %></td>
-          </tr>
-        </tbody>
-    </table>
-
-    <span class="space"></span>
-
-    <p class="text-center bold">請求情報</p>
-    <table class="table-center">
-        <tbody>
-          <tr>
-            <th class="column-narrow th-color">商品合計</th>
-            <td class="column-narrow text-right"><%= @order.total_item_price.to_s(:delimited) %> 円</td>
-          </tr>
-          <tr>
-            <th class="column-narrow th-color">送料</th>
-            <td class="column-narrow text-right"><%= @order.delivery_fee.to_s(:delimited) %> 円</td>
-          </tr>
-          <tr>
-            <th class="column-narrow th-color">ご請求金額</th>
-            <td class="column-narrow text-right"><%= (@order.total_item_price + @order.delivery_fee).to_s(:delimited) %> 円</td>
-          </tr>
-        </tbody>
-    </table>
-
-    <span class="space"></span>
-
+<div class="container">
+  <div class="position-center">
+    <h4><span class="page-title">注文履歴詳細</span></h4>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-7">
+    　<p class="text-center bold">注文情報</p>
+      <table class="table-center">
+          <tbody>
+            <tr>
+              <th class="column-narrow th-color">注文日</th>
+              <td class="column-very-wide"><%= @order.created_at.strftime("%Y/%m/%d") %></td>
+            </tr>
+            <tr>
+              <th class="column-narrow th-color">配送先</th>
+              <td class="column-very-wide">
+                 〒<%= @order.receiver_postal_code %><br>
+                  <%= @order.receiver_address %><br>
+                  <%= @order.receiver_name %>
+              </td>
+            </tr>
+            <tr>
+              <th class="column-narrow th-color">支払方法</th>
+              <td class="column-very-wide"><%= @order.payment_method_i18n %></td>
+            </tr>
+            <tr>
+              <th class="column-narrow th-color">ステータス</th>
+              <td class="column-very-wide"><%= @order.order_status_i18n %></td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+    
+    <div class="col-md-5">
+      <p class="text-center bold order">請求情報</p>
+        <table class="table-center">
+            <tbody>
+              <tr>
+                <th class="column-narrow th-color">商品合計</th>
+                <td class="column-narrow text-right"><%= @order.total_item_price.to_s(:delimited) %> 円</td>
+              </tr>
+              <tr>
+                <th class="column-narrow th-color">送料</th>
+                <td class="column-narrow text-right"><%= @order.delivery_fee.to_s(:delimited) %> 円</td>
+              </tr>
+              <tr>
+                <th class="column-narrow th-color">ご請求金額</th>
+                <td class="column-narrow text-right"><%= (@order.total_item_price + @order.delivery_fee).to_s(:delimited) %> 円</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+  
+  <div class="row justify-content-md-center">
     <p class="text-center bold">注文内容</p>
+  </div>
+  
+  <div class="row">
     <table class="table-center">
       <thead>
         <tr>
@@ -70,4 +77,7 @@
           </tr>
         <% end %>
       </tbody>
-  </table>
+    </table>
+  </div>
+</div>
+
